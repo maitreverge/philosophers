@@ -1,0 +1,2 @@
+# philosophers
+Threads of thought 🤔
