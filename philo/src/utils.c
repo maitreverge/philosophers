@@ -1,22 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: flverge <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/17 21:18:38 by flverge           #+#    #+#             */
-/*   Updated: 2024/02/18 18:09:34 by flverge          ###   ########.fr       */
+/*   Created: 2024/02/18 17:29:34 by flverge           #+#    #+#             */
+/*   Updated: 2024/02/18 17:30:45 by flverge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-int main(int ac, char **av)
+bool	is_philo_digit(int c)
 {
-	if (arg_checker(ac, av) == true)
-	{
-		printf("Okay\n\n");
-	}
-	return (0);
+	if ((c >= '0' && c <= '9') || c == '+')
+		return (true);
+	return (false);
 }
