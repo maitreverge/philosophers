@@ -6,7 +6,7 @@
 /*   By: flverge <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 21:18:18 by flverge           #+#    #+#             */
-/*   Updated: 2024/02/21 12:59:44 by flverge          ###   ########.fr       */
+/*   Updated: 2024/02/21 13:12:27 by flverge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,11 @@ void	print_usage(void);
 bool arg_checker(int ac, char **av);
 
 int	ft_atoi(const char *str);
+
+void	print_struc(t_philo **data);
+
+
+
 
 
 

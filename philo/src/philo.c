@@ -6,7 +6,7 @@
 /*   By: flverge <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 21:18:38 by flverge           #+#    #+#             */
-/*   Updated: 2024/02/21 13:01:17 by flverge          ###   ########.fr       */
+/*   Updated: 2024/02/21 13:12:18 by flverge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int main(int ac, char **av)
 	if (arg_checker(ac, av) == true)
 	{
 		data = init_struct(ac, av);
-		// printf("Okay\n\n");
+		print_struct(&data);
 		free(data);
 	}
 	return (0);
