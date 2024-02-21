@@ -6,7 +6,7 @@
 #    By: flverge <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/17 21:19:56 by flverge           #+#    #+#              #
-#    Updated: 2024/02/17 21:22:44 by flverge          ###   ########.fr        #
+#    Updated: 2024/02/21 10:52:48 by flverge          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ NAME = philo
 CC = cc
 
 # Compiler options
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -pthread
 
 # Asan flag
 # CFLAGS = -Wall -Wextra -Werror -fsanitize=address -static-libsan
