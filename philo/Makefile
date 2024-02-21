@@ -6,7 +6,7 @@
 #    By: flverge <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/17 21:19:56 by flverge           #+#    #+#              #
-#    Updated: 2024/02/21 10:52:48 by flverge          ###   ########.fr        #
+#    Updated: 2024/02/21 12:53:41 by flverge          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,7 @@ $(NAME): $(OBJ)
 	@echo "\n"
 	@$(CC) $(CFLAGS) $(OBJ) $(INC) -o $(NAME)
 	@echo "🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳"
-	@echo "$(BOLD)$(GREEN)🥳      Philosophers fully compiled, ready to use      🥳$(RESET)"
+	@echo "$(BOLD)$(GREEN)🥳    Philosophers fully compiled, ready to use     🥳$(RESET)"
 	@echo "🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳"
 	@echo "\n"
 
@@ -63,7 +63,7 @@ clean:
 
 fclean: clean
 	@rm -f $(NAME)
-	@echo "$(BOLD)$(ORANGE)🌀        Cleaned push_swap exec      🌀$(RESET)"
+	@echo "$(BOLD)$(ORANGE)🌀        Cleaned philo exec      🌀$(RESET)"
 	@echo "\n"
 	@echo "$(BOLD)$(BLUE)-----------------------$(RESET)"
 	@echo "\n"

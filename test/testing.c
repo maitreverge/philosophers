@@ -42,9 +42,19 @@ int main(int ac, char **av)
 	pthread_create(&t2, NULL, &routine, NULL);
 
 	We could call them in a if statement like :
-	
-
 	*/
+
+	if (pthread_create(&t1, NULL, &routine, NULL) != 0)
+	{
+		// If pthread_create return something that is not 0, it means that it failed
+		return 1;
+	}
+	
+	if (pthread_create(&t2, NULL, &routine, NULL) != 0)
+	{
+		// If pthread_create return something that is not 0, it means that it failed
+		return 1;
+	}
 
 
 
@@ -53,8 +63,19 @@ int main(int ac, char **av)
 	Because we don't want the main function to finish during the thread running
 	*/
 
-	pthread_join(t1, NULL);
-	pthread_join(t2, NULL);
+	/*
+	same as the pthread_create function, we need to make sure the pthread_join functions
+	Execute themselves as they are supposed to
+	*/
+
+	if (pthread_join(t1, NULL) != 0)
+	{
+		return 1;
+	}
+	if (pthread_join(t2, NULL) != 0)
+	{
+		return 1;
+	}
 
 	return 0;
 }
