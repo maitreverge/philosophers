@@ -68,7 +68,7 @@ int main(int ac, char **av)
 	Execute themselves as they are supposed to
 	*/
 
-	if (pthread_join(t1, NULL) != 0)
+	if (pthread_join(t1, NULL) != 0) 
 	{
 		return 1;
 	}
