@@ -6,17 +6,17 @@
 /*   By: flverge <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 21:18:38 by flverge           #+#    #+#             */
-/*   Updated: 2024/03/13 10:46:53 by flverge          ###   ########.fr       */
+/*   Updated: 2024/03/13 18:08:01 by flverge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-t_philo *init_struct(int ac, char **av)
+t_pars *init_struct(int ac, char **av)
 {
-	t_philo *new_node;
+	t_pars *new_node;
 
-	new_node = malloc(sizeof(t_philo));
+	new_node = malloc(sizeof(t_pars));
 	if (!new_node)
 		return NULL;
 	new_node->nb_philos = ft_atoi(av[1]);
@@ -31,7 +31,7 @@ t_philo *init_struct(int ac, char **av)
 
 int main(int ac, char **av)
 {
-	t_philo *data;
+	t_pars *data;
 
 	data = NULL;
 	if (arg_checker(ac, av) == true)

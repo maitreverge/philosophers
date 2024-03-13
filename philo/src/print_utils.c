@@ -1,8 +1,8 @@
 #include "../includes/philo.h"
 
-void	print_struct(t_philo **data)
+void	print_struct(t_pars **data)
 {
-	t_philo *node;
+	t_pars *node;
 
 	node = *data;
 

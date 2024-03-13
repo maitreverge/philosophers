@@ -25,14 +25,20 @@
 // pthread_create, pthread_detach, pthread_join, pthread_mutex_init
 // pthread_mutex_destroy, pthread_mutex_lock, pthread_mutex_unlock
 
-typedef struct s_philo
+typedef struct s_pars
 {
 	size_t nb_philos;
 	size_t time2die;
 	size_t time2eat;
 	size_t time2sleep;
 	int nb_meals;
-}		t_philo;
+}		t_pars;
+
+typedef	struct s_fork
+{
+	pthread_mutex_t fork;
+	size_t id_fork;
+}		t_fork;
 
 bool	is_philo_digit(int c);
 
@@ -42,7 +48,7 @@ bool arg_checker(int ac, char **av);
 
 int	ft_atoi(const char *str);
 
-void	print_struct(t_philo **data);
+void	print_struct(t_pars **data);
 
 int	ft_isdigit(int c);
 
