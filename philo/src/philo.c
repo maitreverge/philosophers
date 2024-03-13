@@ -6,7 +6,7 @@
 /*   By: flverge <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 21:18:38 by flverge           #+#    #+#             */
-/*   Updated: 2024/02/21 13:12:18 by flverge          ###   ########.fr       */
+/*   Updated: 2024/03/13 10:46:53 by flverge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,15 @@ t_philo *init_struct(int ac, char **av)
 {
 	t_philo *new_node;
 
+	new_node = malloc(sizeof(t_philo));
+	if (!new_node)
+		return NULL;
 	new_node->nb_philos = ft_atoi(av[1]);
 	new_node->time2die = ft_atoi(av[2]);
 	new_node->time2eat = ft_atoi(av[3]);
 	new_node->time2sleep = ft_atoi(av[4]);
-	if (av[5])
-		new_node->nb_meals = ft_atoi(av[4]);
+	if (ac == 6 && av[5])
+		new_node->nb_meals = ft_atoi(av[5]);
 
 	return (new_node);
 }

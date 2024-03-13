@@ -6,7 +6,7 @@
 /*   By: flverge <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 17:29:34 by flverge           #+#    #+#             */
-/*   Updated: 2024/02/18 17:30:45 by flverge          ###   ########.fr       */
+/*   Updated: 2024/03/13 10:44:08 by flverge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,4 +17,11 @@ bool	is_philo_digit(int c)
 	if ((c >= '0' && c <= '9') || c == '+')
 		return (true);
 	return (false);
+}
+
+int	ft_isdigit(int c)
+{
+	if (c >= '0' && c <= '9')
+		return (1);
+	return (0);
 }

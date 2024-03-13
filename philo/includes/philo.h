@@ -31,7 +31,7 @@ typedef struct s_philo
 	size_t time2die;
 	size_t time2eat;
 	size_t time2sleep;
-	size_t nb_meals;
+	int nb_meals;
 }		t_philo;
 
 bool	is_philo_digit(int c);
@@ -42,7 +42,10 @@ bool arg_checker(int ac, char **av);
 
 int	ft_atoi(const char *str);
 
-void	print_struc(t_philo **data);
+void	print_struct(t_philo **data);
+
+int	ft_isdigit(int c);
+
 
 
 
