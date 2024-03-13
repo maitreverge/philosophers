@@ -31,7 +31,7 @@ typedef struct s_pars
 	size_t time2die;
 	size_t time2eat;
 	size_t time2sleep;
-	int nb_meals;
+	int max_meals; // ? nb of meals can be negative ??
 }		t_pars;
 
 typedef	struct s_fork
@@ -39,6 +39,16 @@ typedef	struct s_fork
 	pthread_mutex_t fork;
 	size_t id_fork;
 }		t_fork;
+
+typedef struct s_philo
+{
+	size_t id_philo;
+	t_fork *right_fork;
+	t_fork *left_fork;
+	size_t nb_meals;
+	bool is_philo_full;
+}		t_philo;
+
 
 bool	is_philo_digit(int c);
 
