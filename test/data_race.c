@@ -13,7 +13,7 @@ void*	routine()
 	// ! STEP 4 : using the mutex
 	printf("Start of the thread \n");
 	sleep(3);
-	for (int i = 0; i < 10000; i++)
+	for (int i = 0; i < 100; i++)
 	{
 		pthread_mutex_lock(&mutex);
 		global++;

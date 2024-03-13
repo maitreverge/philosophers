@@ -6,7 +6,7 @@
 /*   By: flverge <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 12:58:37 by flverge           #+#    #+#             */
-/*   Updated: 2024/02/21 12:59:28 by flverge          ###   ########.fr       */
+/*   Updated: 2024/03/13 11:36:58 by flverge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,11 @@ int	ft_atoi(const char *str)
 		i++;
 	}
 	return (polarity * result);
+}
+
+int	ft_isdigit(int c)
+{
+	if (c >= '0' && c <= '9')
+		return (1);
+	return (0);
 }
