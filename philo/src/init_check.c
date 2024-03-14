@@ -6,7 +6,7 @@
 /*   By: flverge <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 17:52:47 by flverge           #+#    #+#             */
-/*   Updated: 2024/03/14 17:47:29 by flverge          ###   ########.fr       */
+/*   Updated: 2024/03/14 18:20:10 by flverge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,17 @@ static bool nb_args_ok(int ac)
 {
 	if (ac < 5)
 	{
-		printf(RED); // Set the text color to red
+		printf(RED);
 		printf("⛔ Error : Missing at least %i arguments ⛔\n\n", 5 - ac);
-		printf(RESET); // Resets the text color to default
+		printf(RESET); 
 		print_usage();
 		return (false);
 	}
 	else if (ac > 6)
 	{
-		printf(RED); // Set the text color to red
+		printf(RED);
 		printf("⛔ Error : Too many arguments ⛔\n\n");
-		printf(RESET); // Resets the text color to default
+		printf(RESET);
 		print_usage();
 		return (false);
 	}
@@ -35,23 +35,23 @@ static bool nb_args_ok(int ac)
 
 static void	error_digit(void)
 {
-	printf(RED); // Set the text color to red
+	printf(RED);
 	printf("⛔ Error : Incorrect(s) argument(s) detected ⛔\n\n");
-	printf(RESET); // Resets the text color to default
+	printf(RESET);
 	print_usage();
 }
 
 void	print_usage(void)
 {
 	printf("Usage :\n./philo ");
-	printf(GREEN); // Set the text color to green
+	printf(GREEN);
 	printf(" <nb_of_philosophers>  <time_to_die>  ");
 	printf("<time_to_eat>  <time_to_spleep>  ");
-	printf(RESET); // Resets the text color to default
+	printf(RESET);
 	printf("[ ⚠️  Next Argument Optional ⚠️  ]");
-	printf(YELLOW); // Set the text color to a shade of orange
+	printf(YELLOW);
 	printf("  <nb_of_time_each_philo_must_eat>\n\n");
-	printf(RESET); // Resets the text color to default
+	printf(RESET); 
 }
 
 bool arg_checker(int ac, char **av)

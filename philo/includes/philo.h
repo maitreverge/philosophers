@@ -55,10 +55,12 @@ typedef struct s_pars
 	size_t time2die;
 	size_t time2eat;
 	size_t time2sleep;
+	bool 	infinite_meals;
 	int max_meals; // ? nb of meals can be negative ??
 	unsigned long start_time;
 	t_fork *forks;
 	t_philo *philos;
+	bool is_diner_over;
 }		t_pars;
 
 bool	is_philo_digit(int c);
@@ -67,11 +69,17 @@ bool	is_philo_digit(int c);
 void	print_usage(void);
 bool arg_checker(int ac, char **av);
 
-int	ft_atoi(const char *str);
+size_t	ft_atoi(const char *str);
 
 void	print_struct(t_pars **data);
 
-int	ft_isdigit(int c);
+bool	ft_isdigit(int c);
+
+void	custom_exit(char *s);
+
+void	*secure_malloc(size_t size);
+
+
 
 
 
