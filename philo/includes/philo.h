@@ -25,14 +25,14 @@
 // pthread_create, pthread_detach, pthread_join, pthread_mutex_init
 // pthread_mutex_destroy, pthread_mutex_lock, pthread_mutex_unlock
 
-typedef struct s_pars
-{
-	size_t nb_philos;
-	size_t time2die;
-	size_t time2eat;
-	size_t time2sleep;
-	int max_meals; // ? nb of meals can be negative ??
-}		t_pars;
+#define RED     "\033[0;31m"
+#define GREEN   "\033[0;32m"
+#define YELLOW  "\033[0;33m"
+#define BLUE    "\033[0;34m"
+#define MAGENTA "\033[0;35m"
+#define CYAN    "\033[0;36m"
+#define RESET   "\033[0m"
+
 
 typedef	struct s_fork
 {
@@ -42,13 +42,24 @@ typedef	struct s_fork
 
 typedef struct s_philo
 {
-	size_t id_philo;
+	size_t id;
 	t_fork *right_fork;
 	t_fork *left_fork;
 	size_t nb_meals;
 	bool is_philo_full;
 }		t_philo;
 
+typedef struct s_pars
+{
+	size_t nb_philos;
+	size_t time2die;
+	size_t time2eat;
+	size_t time2sleep;
+	int max_meals; // ? nb of meals can be negative ??
+	unsigned long start_time;
+	t_fork *forks;
+	t_philo *philos;
+}		t_pars;
 
 bool	is_philo_digit(int c);
 
