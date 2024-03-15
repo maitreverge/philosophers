@@ -33,6 +33,16 @@
 #define CYAN    "\033[0;36m"
 #define RESET   "\033[0m"
 
+pthread_mutex_t mutex;
+
+enum e_mutex_code
+{
+	INIT,
+	LOCK,
+	UNLOCK,
+	DESTROY
+};
+
 
 typedef	struct s_fork
 {
@@ -78,6 +88,8 @@ bool	ft_isdigit(int c);
 void	custom_exit(char *s);
 
 void	*secure_malloc(size_t size);
+
+void	mutex(int code, pthread_mutex_t *mutex);
 
 
 

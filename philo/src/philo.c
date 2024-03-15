@@ -6,7 +6,7 @@
 /*   By: flverge <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 21:18:38 by flverge           #+#    #+#             */
-/*   Updated: 2024/03/14 18:18:20 by flverge          ###   ########.fr       */
+/*   Updated: 2024/03/15 13:29:54 by flverge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ int main(int ac, char **av)
 		
 		// ! clean all the stuff
 		free(data);
+		mutex(DESTROY, &mutex);
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: flverge <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 17:29:34 by flverge           #+#    #+#             */
-/*   Updated: 2024/03/14 18:10:44 by flverge          ###   ########.fr       */
+/*   Updated: 2024/03/15 13:29:49 by flverge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,16 @@ void	*secure_malloc(size_t size)
 	if (!result)
 		custom_exit("Malloc failed allocating memory");
 	return (result);
+}
+
+void	mutex(int code, pthread_mutex_t *mutex)
+{
+	if (code == INIT)
+		pthread_mutex_init(&mutex, NULL);
+	else if (code == LOCK)
+		pthread_mutex_lock(&mutex);
+	else if (code == UNLOCK)
+		pthread_mutex_unlock(&mutex);
+	else // DESTROY
+		pthread_mutex_destroy(&mutex);
 }
