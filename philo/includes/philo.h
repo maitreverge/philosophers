@@ -33,8 +33,6 @@
 #define CYAN    "\033[0;36m"
 #define RESET   "\033[0m"
 
-pthread_mutex_t mutex;
-
 enum e_mutex_code
 {
 	INIT,
@@ -53,10 +51,11 @@ typedef	struct s_fork
 typedef struct s_philo
 {
 	size_t id;
-	t_fork *right_fork;
-	t_fork *left_fork;
 	size_t nb_meals;
 	bool is_philo_full;
+	t_fork *first_fork;
+	t_fork *second_fork;
+	t_pars relink_pars;
 }		t_philo;
 
 typedef struct s_pars

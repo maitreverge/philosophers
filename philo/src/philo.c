@@ -6,13 +6,27 @@
 /*   By: flverge <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 21:18:38 by flverge           #+#    #+#             */
-/*   Updated: 2024/03/15 17:08:23 by flverge          ###   ########.fr       */
+/*   Updated: 2024/03/18 13:53:04 by flverge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
 // 38.02
+
+void	get_forks(t_philo *philo, t_fork *forks, int i)
+{
+	int philo_nbr = philo->relink_pars.nb_philos;
+
+	philo->first_fork = &forks[(i + 1) % philo_nbr];
+	philo->second_fork = &forks[i];
+	if (philo->id % 2)
+	{
+		philo->first_fork = &forks[i];
+		philo->second_fork = &forks[(i + 1) % philo_nbr];
+	}
+	
+}
 
 t_pars *init_struct(int ac, char **av)
 {
@@ -38,26 +52,29 @@ t_pars *init_struct(int ac, char **av)
 	
 	new_node->is_diner_over = false;
 
-	// ! need to malloc t_philo
-	new_node->philos = secure_malloc(sizeof(t_philo) * new_node->nb_philos);
+	new_node->forks = secure_malloc(sizeof(t_fork) * new_node->nb_philos);
 	int i = 0;
 	//init forks mutexes
-	while (i <= new_node->nb_philos)
+	while (i < new_node->nb_philos)
 	{
 		mutex(INIT, &new_node->forks[i].fork);
+		new_node->forks[i].id_fork = i; // init the ids of forks
 		i++;
 	}
-	new_node->forks = secure_malloc(sizeof(t_fork) * new_node->nb_philos);
+	
+	new_node->philos = secure_malloc(sizeof(t_philo) * new_node->nb_philos);
 	i = 0;
 	// init philo thread
 	t_philo *philo;
-	while (i <= new_node->nb_philos)
+	while (i < new_node->nb_philos)
 	{
 		philo = &new_node->philos[i];
 		philo->id = i;
-		philo->is_philo_full = false;
 		philo->nb_meals = 0;
 		philo->is_philo_full = false;
+		philo->relink_pars = *new_node;
+		
+		get_forks(philo, new_node->forks, i);
 	}
 
 	return (new_node);
@@ -75,6 +92,8 @@ bool data_wrong_time(t_pars **pars)
 int main(int ac, char **av)
 {
 	t_pars *data;
+	pthread_mutex_t mutex;
+
 
 	data = NULL;
 	if (arg_checker(ac, av) == true)
