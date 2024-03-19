@@ -6,7 +6,7 @@
 /*   By: flverge <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 17:29:34 by flverge           #+#    #+#             */
-/*   Updated: 2024/03/15 13:29:49 by flverge          ###   ########.fr       */
+/*   Updated: 2024/03/19 17:28:18 by flverge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	*secure_malloc(size_t size)
 	return (result);
 }
 
-void	mutex(int code, pthread_mutex_t *mutex)
+void	ft_mutex(int code, pthread_mutex_t *mutex)
 {
 	if (code == INIT)
 		pthread_mutex_init(&mutex, NULL);

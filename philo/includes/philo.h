@@ -56,6 +56,7 @@ typedef struct s_philo
 	t_fork *first_fork;
 	t_fork *second_fork;
 	t_pars relink_pars;
+	pthread_t id_thread;
 }		t_philo;
 
 typedef struct s_pars
@@ -88,7 +89,7 @@ void	custom_exit(char *s);
 
 void	*secure_malloc(size_t size);
 
-void	mutex(int code, pthread_mutex_t *mutex);
+void	ft_mutex(int code, pthread_mutex_t *mutex);
 
 
 

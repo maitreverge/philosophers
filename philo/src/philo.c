@@ -6,7 +6,7 @@
 /*   By: flverge <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 21:18:38 by flverge           #+#    #+#             */
-/*   Updated: 2024/03/18 13:53:04 by flverge          ###   ########.fr       */
+/*   Updated: 2024/03/19 17:46:00 by flverge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,11 +107,11 @@ int main(int ac, char **av)
 		}
 		// print_struct(&data);
 		// ! start the dinner
-		// code
+		turbo_dinner(&data);
 		
 		// ! clean all the stuff
 		free(data);
-		mutex(DESTROY, &mutex);
+		ft_mutex(DESTROY, &mutex);
 	}
 	return (0);
 }
