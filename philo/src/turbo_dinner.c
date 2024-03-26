@@ -6,7 +6,7 @@
 /*   By: flverge <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 17:26:35 by flverge           #+#    #+#             */
-/*   Updated: 2024/03/26 11:12:20 by flverge          ###   ########.fr       */
+/*   Updated: 2024/03/26 11:14:21 by flverge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	*ft_dinner(void *data)
 
 	philo = (t_philo *)data;
 
-	wait_threads();
+	wait_threads(philo->relink_pars);
 }
 
 void	turbo_dinner(t_pars **pars)

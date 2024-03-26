@@ -66,11 +66,12 @@ typedef struct s_pars
 	size_t time2eat;
 	size_t time2sleep;
 	bool 	infinite_meals;
-	int max_meals; // ? nb of meals can be negative ??
+	size_t max_meals; // ? nb of meals can be negative ??
 	unsigned long start_time;
 	t_fork *forks;
 	t_philo *philos;
 	bool every_thread_ready;
+	pthread_mutex_t mutex_pars;
 	bool is_diner_over;
 }		t_pars;
 
@@ -92,6 +93,10 @@ void	*secure_malloc(size_t size);
 
 void	ft_mutex(int code, pthread_mutex_t *mutex);
 
+void set_bool(pthread_mutex_t *mutex, bool *dest, bool value);
+bool get_bool(pthread_mutex_t *mutex, bool *value);
+void set_sizet(pthread_mutex_t *mutex, size_t *dest, size_t value);
+size_t get_sizet(pthread_mutex_t *mutex, size_t *value);
 
 
 

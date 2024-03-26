@@ -6,7 +6,7 @@
 /*   By: flverge <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 17:29:34 by flverge           #+#    #+#             */
-/*   Updated: 2024/03/19 17:28:18 by flverge          ###   ########.fr       */
+/*   Updated: 2024/03/26 11:27:57 by flverge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,37 @@ void	ft_mutex(int code, pthread_mutex_t *mutex)
 		pthread_mutex_unlock(&mutex);
 	else // DESTROY
 		pthread_mutex_destroy(&mutex);
+}
+
+void set_bool(pthread_mutex_t *mutex, bool *dest, bool value)
+{
+	ft_mutex(LOCK, mutex);
+	*dest = value;
+	ft_mutex(UNLOCK, mutex);
+}
+
+bool get_bool(pthread_mutex_t *mutex, bool *value)
+{
+	bool result;
+	ft_mutex(LOCK, mutex);
+	result = *value;
+	ft_mutex(UNLOCK, mutex);
+	return value;
+}
+
+
+void set_sizet(pthread_mutex_t *mutex, size_t *dest, size_t value)
+{
+	ft_mutex(LOCK, mutex);
+	*dest = value;
+	ft_mutex(UNLOCK, mutex);
+}
+
+size_t get_sizet(pthread_mutex_t *mutex, size_t *value)
+{
+	size_t result;
+	ft_mutex(LOCK, mutex);
+	result = *value;
+	ft_mutex(UNLOCK, mutex);
+	return value;
 }

@@ -6,7 +6,7 @@
 /*   By: flverge <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 21:18:38 by flverge           #+#    #+#             */
-/*   Updated: 2024/03/26 11:13:39 by flverge          ###   ########.fr       */
+/*   Updated: 2024/03/26 11:19:15 by flverge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,17 @@ t_pars *init_struct(int ac, char **av)
 	}
 	
 	new_node->is_diner_over = false;
-	new_node->every_thread_ready = false;
+	
+	new_node->every_thread_ready = false; // syncronization of threads
+
+	ft_mutex(INIT, &new_node->mutex_pars);
 
 	new_node->forks = secure_malloc(sizeof(t_fork) * new_node->nb_philos);
 	int i = 0;
 	//init forks mutexes
 	while (i < new_node->nb_philos)
 	{
-		mutex(INIT, &new_node->forks[i].fork);
+		ft_mutex(INIT, &new_node->forks[i].fork);
 		new_node->forks[i].id_fork = i; // init the ids of forks
 		i++;
 	}
