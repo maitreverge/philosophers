@@ -6,7 +6,7 @@
 /*   By: flverge <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 17:26:35 by flverge           #+#    #+#             */
-/*   Updated: 2024/03/26 11:44:27 by flverge          ###   ########.fr       */
+/*   Updated: 2024/03/26 14:44:57 by flverge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,11 @@ void	turbo_dinner(t_pars **pars)
 		}
 	}
 	
-
+	// STEP 4
+	
+	// turn the bool every_thread_ready
 	set_bool(&current->mutex_pars, &current->every_thread_ready, true);
-	// ! STEP 4 : CREATE A DEAD PHILO CHECHER
 	// ! STEP 5 : MAKE THE WHOLE DINNER START AT THE SAME TIME
+
+	
 }

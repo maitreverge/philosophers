@@ -41,6 +41,13 @@ enum e_mutex_code
 	DESTROY
 };
 
+typedef enum e_time_code
+{
+	SECOND,
+	MILLISECOND,
+	MICROSECOND,
+}		t_time_code;
+
 
 typedef	struct s_fork
 {
