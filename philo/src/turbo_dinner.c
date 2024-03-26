@@ -6,7 +6,7 @@
 /*   By: flverge <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 17:26:35 by flverge           #+#    #+#             */
-/*   Updated: 2024/03/26 14:44:57 by flverge          ###   ########.fr       */
+/*   Updated: 2024/03/26 15:01:18 by flverge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void	*ft_dinner(void *data)
 	philo = (t_philo *)data;
 
 	wait_threads(philo->relink_pars); // wait for every thread to start
+
+	
 }
 
 void	turbo_dinner(t_pars **pars)
@@ -32,6 +34,7 @@ void	turbo_dinner(t_pars **pars)
 
 	current = *pars;
 
+	int i = 0;
 	// ! STEP 1 : if no meals, exit
 	if (current->max_meals == 0)
 		return ;
@@ -39,7 +42,6 @@ void	turbo_dinner(t_pars **pars)
 		handle_one_philo(pars); // * TOUDOU
 	else // ! STEP 3 : CREATE ALL THREADS
 	{
-		int i = 0;
 		while (i < current->nb_philos)
 		{
 			pthread_create(current->philos[i].id_thread, NULL, ft_dinner(pars), NULL);
@@ -47,11 +49,24 @@ void	turbo_dinner(t_pars **pars)
 		}
 	}
 	
-	// STEP 4
+	// ! STEP 4 : get time of the starting simulation
+	
+	current->start_time = get_time(MILLISECOND);
+
+	
 	
 	// turn the bool every_thread_ready
 	set_bool(&current->mutex_pars, &current->every_thread_ready, true);
 	// ! STEP 5 : MAKE THE WHOLE DINNER START AT THE SAME TIME
 
+	// wait for all the thread
+	i = 0;
+	while (i < current->nb_philos)
+	{
+		pthread_join(&current->philos[i].id_thread, NULL);
+		i++;
+	}
+
+	// from here, all the philos are full
 	
 }

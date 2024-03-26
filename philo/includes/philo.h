@@ -110,6 +110,7 @@ bool simulation_over(t_pars *pars);
 
 void	wait_thread(t_pars *pars);
 
+long get_time(t_time_code time_code);
 
 
 
