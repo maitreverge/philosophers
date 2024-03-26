@@ -70,6 +70,7 @@ typedef struct s_pars
 	unsigned long start_time;
 	t_fork *forks;
 	t_philo *philos;
+	bool every_thread_ready;
 	bool is_diner_over;
 }		t_pars;
 

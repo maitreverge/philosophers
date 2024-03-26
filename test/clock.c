@@ -22,3 +22,9 @@ int main(void)
 	gettimeofday(&tv, NULL);
 	printf("End = %li\n", tv.tv_sec);
 }
+
+int ft_strlen(char *str)
+{
+	int i = 0
+	
+}
