@@ -6,7 +6,7 @@
 /*   By: flverge <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 17:26:35 by flverge           #+#    #+#             */
-/*   Updated: 2024/03/26 11:14:21 by flverge          ###   ########.fr       */
+/*   Updated: 2024/03/26 11:44:27 by flverge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	*ft_dinner(void *data)
 
 	philo = (t_philo *)data;
 
-	wait_threads(philo->relink_pars);
+	wait_threads(philo->relink_pars); // wait for every thread to start
 }
 
 void	turbo_dinner(t_pars **pars)
@@ -37,7 +37,7 @@ void	turbo_dinner(t_pars **pars)
 		return ;
 	else if (current->nb_philos == 1)// ! STEP 2 : if only one philo, create a specific function for it
 		handle_one_philo(pars); // * TOUDOU
-	else
+	else // ! STEP 3 : CREATE ALL THREADS
 	{
 		int i = 0;
 		while (i < current->nb_philos)
@@ -47,7 +47,8 @@ void	turbo_dinner(t_pars **pars)
 		}
 	}
 	
-	// ! STEP 3 : CREATE ALL THREADS
+
+	set_bool(&current->mutex_pars, &current->every_thread_ready, true);
 	// ! STEP 4 : CREATE A DEAD PHILO CHECHER
 	// ! STEP 5 : MAKE THE WHOLE DINNER START AT THE SAME TIME
 }

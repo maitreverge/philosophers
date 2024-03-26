@@ -6,7 +6,7 @@
 /*   By: flverge <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 17:29:34 by flverge           #+#    #+#             */
-/*   Updated: 2024/03/26 11:27:57 by flverge          ###   ########.fr       */
+/*   Updated: 2024/03/26 11:37:30 by flverge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,4 +78,9 @@ size_t get_sizet(pthread_mutex_t *mutex, size_t *value)
 	result = *value;
 	ft_mutex(UNLOCK, mutex);
 	return value;
+}
+
+bool simulation_over(t_pars *pars)
+{
+	return (get_bool(&pars->mutex_pars, &pars->is_diner_over));
 }

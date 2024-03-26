@@ -99,7 +99,9 @@ void set_sizet(pthread_mutex_t *mutex, size_t *dest, size_t value);
 size_t get_sizet(pthread_mutex_t *mutex, size_t *value);
 
 
+bool simulation_over(t_pars *pars);
 
+void	wait_thread(t_pars *pars);
 
 
 
