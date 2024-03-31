@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: flverge <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: flverge <flverge@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 21:18:38 by flverge           #+#    #+#             */
-/*   Updated: 2024/03/26 15:04:28 by flverge          ###   ########.fr       */
+/*   Updated: 2024/03/31 17:07:27 by flverge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ t_pars *init_struct(int ac, char **av)
 	new_node->every_thread_ready = false; // syncronization of threads
 
 	ft_mutex(INIT, &new_node->mutex_pars);
+	ft_mutex(INIT, &new_node->mutex_write);
 
 	new_node->forks = secure_malloc(sizeof(t_fork) * new_node->nb_philos);
 	int i = 0;

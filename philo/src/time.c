@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   time.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: flverge <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: flverge <flverge@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 14:45:12 by flverge           #+#    #+#             */
-/*   Updated: 2024/03/31 16:56:22 by flverge          ###   ########.fr       */
+/*   Updated: 2024/03/31 16:58:40 by flverge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void precise_usleep(long usec, t_pars *pars)
 {
 	long start;
 	long ecoule;
-	long reste;
+	long reste; 
 
 
 	start = get_time(MICROSECOND);

@@ -48,6 +48,16 @@ typedef enum e_time_code
 	MICROSECOND,
 }		t_time_code;
 
+typedef enum e_philo_status
+{
+	EAT,
+	SLEEP,
+	THINK,
+	DIE,
+	TAKE_FORK_1,
+	TAKE_FORK_2,
+}		t_philo_status;
+
 
 typedef	struct s_fork
 {
@@ -79,6 +89,7 @@ typedef struct s_pars
 	t_philo *philos;
 	bool every_thread_ready;
 	pthread_mutex_t mutex_pars;
+	pthread_mutex_t mutex_write;
 	bool is_diner_over;
 }		t_pars;
 
@@ -111,6 +122,10 @@ bool simulation_over(t_pars *pars);
 void	wait_thread(t_pars *pars);
 
 long get_time(t_time_code time_code);
+
+void	write_status(t_philo_status code, t_philo *philo);
+
+void precise_usleep(long usec, t_pars *pars);
 
 
 

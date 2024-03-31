@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   turbo_dinner.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: flverge <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: flverge <flverge@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 17:26:35 by flverge           #+#    #+#             */
-/*   Updated: 2024/03/31 16:50:30 by flverge          ###   ########.fr       */
+/*   Updated: 2024/03/31 17:45:56 by flverge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,10 @@ void	*ft_dinner(void *data)
 			break;
 		// eat
 		eat(philo);
+		
 		// sleep
-		sleep
+		write_status(SLEEP, philo);
+		precise_usleep(philo->relink_pars.time2sleep, &philo->relink_pars);
 
 		// 4 think
 		thinking(philo);
