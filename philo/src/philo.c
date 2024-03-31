@@ -6,13 +6,13 @@
 /*   By: flverge <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 21:18:38 by flverge           #+#    #+#             */
-/*   Updated: 2024/03/26 11:46:35 by flverge          ###   ########.fr       */
+/*   Updated: 2024/03/26 15:04:28 by flverge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-// 1.09.19
+// 1.16.15
 
 void	get_forks(t_philo *philo, t_fork *forks, int i)
 {

@@ -6,7 +6,7 @@
 /*   By: flverge <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 17:26:35 by flverge           #+#    #+#             */
-/*   Updated: 2024/03/26 15:01:18 by flverge          ###   ########.fr       */
+/*   Updated: 2024/03/31 16:50:30 by flverge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,20 @@ void	*ft_dinner(void *data)
 
 	wait_threads(philo->relink_pars); // wait for every thread to start
 
+	// start the actual simulation
+	while (!simulation_over(data))
+	{
+		// Is the philo full ?
+		if (philo->full)
+			break;
+		// eat
+		eat(philo);
+		// sleep
+		sleep
+
+		// 4 think
+		thinking(philo);
+	}
 	
 }
 

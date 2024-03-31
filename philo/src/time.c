@@ -6,7 +6,7 @@
 /*   By: flverge <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 14:45:12 by flverge           #+#    #+#             */
-/*   Updated: 2024/03/26 14:55:03 by flverge          ###   ########.fr       */
+/*   Updated: 2024/03/31 16:56:22 by flverge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,31 @@ long get_time(t_time_code time_code)
 	else
 		custom_exit("Wrong input on get_time function");
 	return (42);
+}
+
+// precise usleep function
+void precise_usleep(long usec, t_pars *pars)
+{
+	long start;
+	long ecoule;
+	long reste;
+
+
+	start = get_time(MICROSECOND);
+
+	while (get_time(MICROSECOND - start) < usec)
+	{
+		if (simulation_over(pars))
+			break;
+		ecoule = get_time(MICROSECOND) - start;
+		reste = usec - ecoule;
+
+		if (reste > 1000)
+			usleep(usec / 2);
+		else
+		{
+			while (get_time(MICROSECOND - start) < usec)
+				;
+		}
+	}
 }
