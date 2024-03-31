@@ -85,6 +85,7 @@ typedef struct s_pars
 	pthread_mutex_t mutex_write;
 	bool is_diner_over;
 	pthread_t monitor;
+	size_t threads_running_nb;
 }		t_pars;
 
 typedef struct s_philo
@@ -138,7 +139,7 @@ void precise_usleep(long usec, t_pars *pars);
 
 void	turbo_dinner(t_pars **pars);
 
-
+bool all_threads_running(pthread_mutex_t *mutex, size_t *threads, size_t philo_nb);
 
 
 

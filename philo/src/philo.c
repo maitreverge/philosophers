@@ -6,7 +6,7 @@
 /*   By: flverge <flverge@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 21:18:38 by flverge           #+#    #+#             */
-/*   Updated: 2024/03/31 20:14:24 by flverge          ###   ########.fr       */
+/*   Updated: 2024/03/31 20:31:25 by flverge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ t_pars *init_struct(int ac, char **av)
 	new_node->is_diner_over = false;
 	
 	new_node->every_thread_ready = false; // syncronization of threads
+
+	new_node->threads_running_nb = 0;
 
 	ft_mutex(INIT, &new_node->mutex_pars);
 	ft_mutex(INIT, &new_node->mutex_write);

@@ -6,7 +6,7 @@
 /*   By: flverge <flverge@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 17:26:35 by flverge           #+#    #+#             */
-/*   Updated: 2024/03/31 20:18:28 by flverge          ###   ########.fr       */
+/*   Updated: 2024/03/31 20:34:47 by flverge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,13 @@ void eat(t_philo *philo)
 	ft_mutex(UNLOCK, &philo->second_fork->fork);
 }
 
+void increase_long(pthread_mutex_t *mutex, long *value)
+{
+	ft_mutex(LOCK, mutex);
+	(*value)++;
+	ft_mutex(UNLOCK, mutex);
+}
+
 void	*ft_dinner(void *data)
 {
 	t_philo *philo;
@@ -52,6 +59,9 @@ void	*ft_dinner(void *data)
 	philo = (t_philo *)data;
 
 	wait_thread(philo->relink_pars); // wait for every thread to start
+
+	////////////
+	increase_long(&philo->relink_pars.mutex_pars, &philo->relink_pars.threads_running_nb);
 
 	// start the actual simulation
 	while (!simulation_over(data))

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: flverge <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: flverge <flverge@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 17:29:34 by flverge           #+#    #+#             */
-/*   Updated: 2024/03/26 11:37:30 by flverge          ###   ########.fr       */
+/*   Updated: 2024/03/31 20:37:53 by flverge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,4 +83,21 @@ size_t get_sizet(pthread_mutex_t *mutex, size_t *value)
 bool simulation_over(t_pars *pars)
 {
 	return (get_bool(&pars->mutex_pars, &pars->is_diner_over));
+}
+
+
+bool all_threads_running(pthread_mutex_t *mutex, size_t *threads, size_t philo_nb)
+{
+	bool result;
+
+	result = false;
+
+	ft_mutex(LOCK, mutex);
+
+	if (*threads == philo_nb)
+		result = true;
+
+	ft_mutex(UNLOCK, mutex);
+	
+	return (result);
 }
