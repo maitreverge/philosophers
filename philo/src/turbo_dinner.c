@@ -6,7 +6,7 @@
 /*   By: flverge <flverge@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 17:26:35 by flverge           #+#    #+#             */
-/*   Updated: 2024/03/31 18:55:50 by flverge          ###   ########.fr       */
+/*   Updated: 2024/03/31 18:58:43 by flverge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,12 @@
 void	handle_one_philo(t_pars **pars)
 {
 	// code
+}
+
+void think (t_philo *philo)
+{
+	write_status(THINK, philo);
+	
 }
 
 void eat(t_philo *philo)
@@ -52,7 +58,7 @@ void	*ft_dinner(void *data)
 	while (!simulation_over(data))
 	{
 		// Is the philo full ?
-		if (philo->full)
+		if (philo->is_philo_full)
 			break;
 		// eat
 		eat(philo);
@@ -62,7 +68,7 @@ void	*ft_dinner(void *data)
 		precise_usleep(philo->relink_pars.time2sleep, &philo->relink_pars);
 
 		// 4 think
-		thinking(philo);
+		think(philo);
 	}
 	
 }
