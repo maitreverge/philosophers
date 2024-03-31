@@ -141,6 +141,11 @@ void	turbo_dinner(t_pars **pars);
 
 bool all_threads_running(pthread_mutex_t *mutex, size_t *threads, size_t philo_nb);
 
+void *monitor_dinner(void *data);
+
+void increase_long(pthread_mutex_t *mutex, size_t *value);
+
+
 
 
 #endif

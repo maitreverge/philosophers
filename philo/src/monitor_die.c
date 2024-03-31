@@ -6,7 +6,7 @@
 /*   By: flverge <flverge@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 20:18:56 by flverge           #+#    #+#             */
-/*   Updated: 2024/03/31 20:55:52 by flverge          ###   ########.fr       */
+/*   Updated: 2024/03/31 21:19:12 by flverge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ bool philo_died(t_philo *philo)
 	
 	ecoule = get_time(MILLISECOND) - get_sizet(&philo->philo_mutex, &philo->last_meal_time);
 
-	t_to_die = philo->relink_pars.time2die;
+	t_to_die = philo->relink_pars.time2die / 1000;
 
 	if (ecoule > t_to_die)
 		return true;

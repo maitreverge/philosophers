@@ -6,7 +6,7 @@
 /*   By: flverge <flverge@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 17:29:34 by flverge           #+#    #+#             */
-/*   Updated: 2024/03/31 20:37:53 by flverge          ###   ########.fr       */
+/*   Updated: 2024/03/31 21:31:28 by flverge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,13 @@ void	*secure_malloc(size_t size)
 void	ft_mutex(int code, pthread_mutex_t *mutex)
 {
 	if (code == INIT)
-		pthread_mutex_init(&mutex, NULL);
+		pthread_mutex_init(mutex, NULL);
 	else if (code == LOCK)
-		pthread_mutex_lock(&mutex);
+		pthread_mutex_lock(mutex);
 	else if (code == UNLOCK)
-		pthread_mutex_unlock(&mutex);
+		pthread_mutex_unlock(mutex);
 	else // DESTROY
-		pthread_mutex_destroy(&mutex);
+		pthread_mutex_destroy(mutex);
 }
 
 void set_bool(pthread_mutex_t *mutex, bool *dest, bool value)
@@ -60,7 +60,7 @@ bool get_bool(pthread_mutex_t *mutex, bool *value)
 	ft_mutex(LOCK, mutex);
 	result = *value;
 	ft_mutex(UNLOCK, mutex);
-	return value;
+	return result;
 }
 
 
@@ -77,7 +77,7 @@ size_t get_sizet(pthread_mutex_t *mutex, size_t *value)
 	ft_mutex(LOCK, mutex);
 	result = *value;
 	ft_mutex(UNLOCK, mutex);
-	return value;
+	return result;
 }
 
 bool simulation_over(t_pars *pars)

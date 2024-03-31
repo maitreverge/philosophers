@@ -6,15 +6,27 @@
 /*   By: flverge <flverge@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 17:26:35 by flverge           #+#    #+#             */
-/*   Updated: 2024/03/31 20:34:47 by flverge          ###   ########.fr       */
+/*   Updated: 2024/03/31 21:29:44 by flverge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-void	handle_one_philo(t_pars **pars)
+void	*handle_one_philo(void *data)
 {
-	// code
+	// size_t i;
+	t_philo *philo;
+
+	philo = (t_philo *)data;
+
+	wait_thread(&philo->relink_pars);
+	set_sizet(&philo->philo_mutex, &philo->last_meal_time, get_time(MILLISECOND));
+	increase_long(&philo->relink_pars.mutex_pars, &philo->relink_pars.threads_running_nb);
+	write_status(TAKE_FORK_1, philo);
+	while (!simulation_over(&philo->relink_pars))
+		usleep(200);
+	return (NULL);
+	
 }
 
 void think (t_philo *philo)
@@ -45,7 +57,7 @@ void eat(t_philo *philo)
 	ft_mutex(UNLOCK, &philo->second_fork->fork);
 }
 
-void increase_long(pthread_mutex_t *mutex, long *value)
+void increase_long(pthread_mutex_t *mutex, size_t *value)
 {
 	ft_mutex(LOCK, mutex);
 	(*value)++;
@@ -58,8 +70,10 @@ void	*ft_dinner(void *data)
 
 	philo = (t_philo *)data;
 
-	wait_thread(philo->relink_pars); // wait for every thread to start
+	wait_thread(&philo->relink_pars); // wait for every thread to start
 
+	// set the last meal time
+	set_sizet(&philo->philo_mutex, &philo->last_meal_time, get_time(MILLISECOND));
 	////////////
 	increase_long(&philo->relink_pars.mutex_pars, &philo->relink_pars.threads_running_nb);
 
@@ -79,7 +93,7 @@ void	*ft_dinner(void *data)
 		// 4 think
 		think(philo);
 	}
-	
+	return NULL;
 }
 
 void	turbo_dinner(t_pars **pars)
@@ -93,18 +107,18 @@ void	turbo_dinner(t_pars **pars)
 	if (current->max_meals == 0)
 		return ;
 	else if (current->nb_philos == 1)// ! STEP 2 : if only one philo, create a specific function for it
-		handle_one_philo(pars); // * TOUDOU
+		pthread_create(&current->philos[0].id_thread, NULL, handle_one_philo(pars), NULL);
 	else // ! STEP 3 : CREATE ALL THREADS
 	{
 		while (i < current->nb_philos)
 		{
-			pthread_create(current->philos[i].id_thread, NULL, ft_dinner(pars), NULL);
+			pthread_create(&current->philos[i].id_thread, NULL, ft_dinner(pars), NULL);
 			i++;
 		}
 	}
 	
 	// Creating the monitor thread
-	pthread_create(current->monitor, NULL, monitor_dinner(), NULL);
+	pthread_create(&current->monitor, NULL, monitor_dinner(current), NULL);
 	
 	// ! STEP 4 : get time of the starting simulation
 	current->start_time = get_time(MILLISECOND);
@@ -117,7 +131,7 @@ void	turbo_dinner(t_pars **pars)
 	i = 0;
 	while (i < current->nb_philos)
 	{
-		pthread_join(&current->philos[i].id_thread, NULL);
+		pthread_join(current->philos[i].id_thread, NULL);
 		i++;
 	}
 
