@@ -6,7 +6,7 @@
 /*   By: flverge <flverge@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 17:26:35 by flverge           #+#    #+#             */
-/*   Updated: 2024/03/31 19:49:00 by flverge          ###   ########.fr       */
+/*   Updated: 2024/03/31 20:18:28 by flverge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void	handle_one_philo(t_pars **pars)
 void think (t_philo *philo)
 {
 	write_status(THINK, philo);
-	
 }
 
 void eat(t_philo *philo)
@@ -94,8 +93,10 @@ void	turbo_dinner(t_pars **pars)
 		}
 	}
 	
-	// ! STEP 4 : get time of the starting simulation
+	// Creating the monitor thread
+	pthread_create(current->monitor, NULL, monitor_dinner(), NULL);
 	
+	// ! STEP 4 : get time of the starting simulation
 	current->start_time = get_time(MILLISECOND);
 	
 	// turn the bool every_thread_ready

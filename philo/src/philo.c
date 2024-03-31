@@ -6,7 +6,7 @@
 /*   By: flverge <flverge@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 21:18:38 by flverge           #+#    #+#             */
-/*   Updated: 2024/03/31 19:44:52 by flverge          ###   ########.fr       */
+/*   Updated: 2024/03/31 20:14:24 by flverge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	get_forks(t_philo *philo, t_fork *forks, int i)
 
 	philo->first_fork = &forks[(i + 1) % philo_nbr];
 	philo->second_fork = &forks[i];
-	if (philo->id % 2)
+	if (philo->id % 2 == 0)
 	{
 		philo->first_fork = &forks[i];
 		philo->second_fork = &forks[(i + 1) % philo_nbr];

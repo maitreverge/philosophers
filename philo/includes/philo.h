@@ -84,6 +84,7 @@ typedef struct s_pars
 	pthread_mutex_t mutex_pars;
 	pthread_mutex_t mutex_write;
 	bool is_diner_over;
+	pthread_t monitor;
 }		t_pars;
 
 typedef struct s_philo
