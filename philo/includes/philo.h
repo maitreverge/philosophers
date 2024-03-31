@@ -69,11 +69,14 @@ typedef struct s_philo
 {
 	size_t id;
 	size_t nb_meals;
+	size_t last_meal_time; // ! need init
 	bool is_philo_full;
 	t_fork *first_fork;
 	t_fork *second_fork;
 	t_pars relink_pars;
 	pthread_t id_thread;
+	pthread_mutex_t philo_mutex;
+
 }		t_philo;
 
 typedef struct s_pars
@@ -84,6 +87,7 @@ typedef struct s_pars
 	size_t time2sleep;
 	bool 	infinite_meals;
 	size_t max_meals; // ? nb of meals can be negative ??
+	// size_t meal_counter;
 	unsigned long start_time;
 	t_fork *forks;
 	t_philo *philos;

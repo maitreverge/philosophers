@@ -6,7 +6,7 @@
 /*   By: flverge <flverge@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 17:26:35 by flverge           #+#    #+#             */
-/*   Updated: 2024/03/31 17:45:56 by flverge          ###   ########.fr       */
+/*   Updated: 2024/03/31 18:55:50 by flverge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,29 @@
 void	handle_one_philo(t_pars **pars)
 {
 	// code
+}
+
+void eat(t_philo *philo)
+{
+	ft_mutex(LOCK, &philo->first_fork->fork);
+	write_status(TAKE_FORK_1, philo);
+	ft_mutex(LOCK, &philo->second_fork->fork);
+	write_status(TAKE_FORK_2, philo);
+
+	// set the last meal time
+	set_sizet(&philo->philo_mutex, &philo->last_meal_time, get_time(MILLISECOND));
+	philo->nb_meals++;
+	write_status(EAT, philo);
+	precise_usleep(philo->relink_pars.time2eat, &philo->relink_pars);
+	
+	if ((philo->relink_pars.max_meals > 0) && (philo->nb_meals == philo->relink_pars.max_meals))
+	{
+		set_bool(&philo->philo_mutex, &philo->is_philo_full, true);
+	}
+	
+	
+	ft_mutex(UNLOCK, &philo->first_fork->fork);
+	ft_mutex(UNLOCK, &philo->second_fork->fork);
 }
 
 void	*ft_dinner(void *data)
