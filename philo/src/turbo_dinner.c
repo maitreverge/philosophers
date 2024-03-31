@@ -6,7 +6,7 @@
 /*   By: flverge <flverge@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 17:26:35 by flverge           #+#    #+#             */
-/*   Updated: 2024/03/31 18:58:43 by flverge          ###   ########.fr       */
+/*   Updated: 2024/03/31 19:49:00 by flverge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	*ft_dinner(void *data)
 
 	philo = (t_philo *)data;
 
-	wait_threads(philo->relink_pars); // wait for every thread to start
+	wait_thread(philo->relink_pars); // wait for every thread to start
 
 	// start the actual simulation
 	while (!simulation_over(data))
@@ -79,7 +79,7 @@ void	turbo_dinner(t_pars **pars)
 
 	current = *pars;
 
-	int i = 0;
+	size_t i = 0;
 	// ! STEP 1 : if no meals, exit
 	if (current->max_meals == 0)
 		return ;
@@ -97,8 +97,6 @@ void	turbo_dinner(t_pars **pars)
 	// ! STEP 4 : get time of the starting simulation
 	
 	current->start_time = get_time(MILLISECOND);
-
-	
 	
 	// turn the bool every_thread_ready
 	set_bool(&current->mutex_pars, &current->every_thread_ready, true);

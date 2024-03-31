@@ -33,6 +33,8 @@
 #define CYAN    "\033[0;36m"
 #define RESET   "\033[0m"
 
+typedef struct s_philo t_philo;
+
 enum e_mutex_code
 {
 	INIT,
@@ -65,19 +67,6 @@ typedef	struct s_fork
 	size_t id_fork;
 }		t_fork;
 
-typedef struct s_philo
-{
-	size_t id;
-	size_t nb_meals;
-	size_t last_meal_time; // ! need init
-	bool is_philo_full;
-	t_fork *first_fork;
-	t_fork *second_fork;
-	t_pars relink_pars;
-	pthread_t id_thread;
-	pthread_mutex_t philo_mutex;
-
-}		t_philo;
 
 typedef struct s_pars
 {
@@ -96,6 +85,20 @@ typedef struct s_pars
 	pthread_mutex_t mutex_write;
 	bool is_diner_over;
 }		t_pars;
+
+typedef struct s_philo
+{
+	size_t id;
+	size_t nb_meals;
+	size_t last_meal_time; // ! need init
+	bool is_philo_full;
+	t_fork *first_fork;
+	t_fork *second_fork;
+	t_pars relink_pars;
+	pthread_t id_thread;
+	pthread_mutex_t philo_mutex;
+
+}		t_philo;
 
 bool	is_philo_digit(int c);
 
@@ -132,6 +135,7 @@ void	write_status(t_philo_status code, t_philo *philo);
 void precise_usleep(long usec, t_pars *pars);
 
 
+void	turbo_dinner(t_pars **pars);
 
 
 

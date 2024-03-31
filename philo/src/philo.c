@@ -6,7 +6,7 @@
 /*   By: flverge <flverge@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 21:18:38 by flverge           #+#    #+#             */
-/*   Updated: 2024/03/31 18:45:40 by flverge          ###   ########.fr       */
+/*   Updated: 2024/03/31 19:44:52 by flverge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 void	get_forks(t_philo *philo, t_fork *forks, int i)
 {
-	int philo_nbr = philo->relink_pars.nb_philos;
+	size_t philo_nbr = philo->relink_pars.nb_philos;
 
 	philo->first_fork = &forks[(i + 1) % philo_nbr];
 	philo->second_fork = &forks[i];
@@ -58,7 +58,7 @@ t_pars *init_struct(int ac, char **av)
 	ft_mutex(INIT, &new_node->mutex_write);
 
 	new_node->forks = secure_malloc(sizeof(t_fork) * new_node->nb_philos);
-	int i = 0;
+	size_t i = 0;
 	//init forks mutexes
 	while (i < new_node->nb_philos)
 	{
