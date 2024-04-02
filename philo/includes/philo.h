@@ -33,6 +33,8 @@
 #define CYAN    "\033[0;36m"
 #define RESET   "\033[0m"
 
+typedef pthread_mutex_t mutex;
+
 typedef struct s_philo t_philo;
 
 typedef enum e_mutex_code
@@ -54,13 +56,6 @@ typedef enum e_philo_status
 }		t_philo_status;
 
 
-typedef	struct s_fork
-{
-	pthread_mutex_t fork;
-	size_t id_fork;
-}		t_fork;
-
-
 typedef struct s_pars
 {
 	size_t nb_philos;
@@ -68,38 +63,36 @@ typedef struct s_pars
 	size_t time2eat;
 	size_t time2sleep;
 	bool 	infinite_meals;
-	size_t max_meals; // ? nb of meals can be negative ??
+	int max_meals;
 	// size_t meal_counter;
-	unsigned long start_time;
-	t_fork *forks;
-	t_philo *philos;
-	bool every_thread_ready;
-	pthread_mutex_t mutex_pars;
-	pthread_mutex_t mutex_write;
-	bool is_diner_over;
-	pthread_t monitor;
-	size_t threads_running_nb;
 }		t_pars;
 
 typedef struct s_philo
 {
 	size_t id;
 	size_t nb_meals;
-	size_t last_meal_time; // ! need init
 	bool is_philo_full;
-	t_fork *first_fork;
-	t_fork *second_fork;
-	t_pars relink_pars;
 	pthread_t id_thread;
-	pthread_mutex_t philo_mutex;
+	mutex *first_fork;
+	mutex *second_fork;
 
 }		t_philo;
 
+static bool nb_args_ok(int ac);
+static void	error_digit(void);
+void	print_usage(void);
+bool arg_checker(int ac, char **av);
 
 
+static bool	ft_isspace(int c);
+size_t	ft_atoi(const char *str);
+bool	ft_isdigit(int c);
 
+void	print_struct(t_pars **data);
 
-
+bool	is_philo_digit(int c);
+void	custom_exit(char *s);
+void	*secure_malloc(size_t size);
 
 
 

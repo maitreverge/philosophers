@@ -6,27 +6,13 @@
 /*   By: flverge <flverge@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 21:18:38 by flverge           #+#    #+#             */
-/*   Updated: 2024/04/02 09:16:00 by flverge          ###   ########.fr       */
+/*   Updated: 2024/04/02 16:47:21 by flverge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
 // 1.16.15
-
-void	get_forks(t_philo *philo, t_fork *forks, int i)
-{
-	size_t philo_nbr = philo->relink_pars.nb_philos;
-
-	philo->first_fork = &forks[(i + 1) % philo_nbr];
-	philo->second_fork = &forks[i];
-	if (philo->id % 2 == 0)
-	{
-		philo->first_fork = &forks[i];
-		philo->second_fork = &forks[(i + 1) % philo_nbr];
-	}
-	
-}
 
 t_pars *init_struct(int ac, char **av)
 {
@@ -89,20 +75,10 @@ t_pars *init_struct(int ac, char **av)
 	return (new_node);
 }
 
-bool data_wrong_time(t_pars **pars)
-{
-	// ! check if ms == micro seconds, read usleep doc
-	
-	if ((*pars)->time2die < 60000 || (*pars)->time2eat < 60000 || (*pars)->time2sleep < 60000)
-		return true;
-	return false;
-}
-
 int main(int ac, char **av)
 {
 	t_pars *data;
 	pthread_mutex_t mutex;
-
 
 	data = NULL;
 	if (arg_checker(ac, av) == true)
