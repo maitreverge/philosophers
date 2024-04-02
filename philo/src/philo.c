@@ -6,7 +6,7 @@
 /*   By: flverge <flverge@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 21:18:38 by flverge           #+#    #+#             */
-/*   Updated: 2024/03/31 20:31:25 by flverge          ###   ########.fr       */
+/*   Updated: 2024/04/02 09:16:00 by flverge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ t_pars *init_struct(int ac, char **av)
 		ft_mutex(INIT, &philo->philo_mutex);
 		
 		get_forks(philo, new_node->forks, i);
+		i++;
 	}
 
 	return (new_node);

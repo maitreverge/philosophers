@@ -35,20 +35,13 @@
 
 typedef struct s_philo t_philo;
 
-enum e_mutex_code
+typedef enum e_mutex_code
 {
 	INIT,
 	LOCK,
 	UNLOCK,
 	DESTROY
-};
-
-typedef enum e_time_code
-{
-	SECOND,
-	MILLISECOND,
-	MICROSECOND,
-}		t_time_code;
+} t_mutex_code;
 
 typedef enum e_philo_status
 {
@@ -102,48 +95,10 @@ typedef struct s_philo
 
 }		t_philo;
 
-bool	is_philo_digit(int c);
-
-// init_check
-void	print_usage(void);
-bool arg_checker(int ac, char **av);
-
-size_t	ft_atoi(const char *str);
-
-void	print_struct(t_pars **data);
-
-bool	ft_isdigit(int c);
-
-void	custom_exit(char *s);
-
-void	*secure_malloc(size_t size);
-
-void	ft_mutex(int code, pthread_mutex_t *mutex);
-
-void set_bool(pthread_mutex_t *mutex, bool *dest, bool value);
-bool get_bool(pthread_mutex_t *mutex, bool *value);
-void set_sizet(pthread_mutex_t *mutex, size_t *dest, size_t value);
-size_t get_sizet(pthread_mutex_t *mutex, size_t *value);
 
 
-bool simulation_over(t_pars *pars);
-
-void	wait_thread(t_pars *pars);
-
-long get_time(t_time_code time_code);
-
-void	write_status(t_philo_status code, t_philo *philo);
-
-void precise_usleep(long usec, t_pars *pars);
 
 
-void	turbo_dinner(t_pars **pars);
-
-bool all_threads_running(pthread_mutex_t *mutex, size_t *threads, size_t philo_nb);
-
-void *monitor_dinner(void *data);
-
-void increase_long(pthread_mutex_t *mutex, size_t *value);
 
 
 

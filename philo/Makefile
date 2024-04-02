@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: flverge <marvin@42.fr>                     +#+  +:+       +#+         #
+#    By: flverge <flverge@student.42perpignan.fr    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/17 21:19:56 by flverge           #+#    #+#              #
-#    Updated: 2024/02/21 12:53:41 by flverge          ###   ########.fr        #
+#    Updated: 2024/04/02 09:14:39 by flverge          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ NAME = philo
 CC = cc
 
 # Compiler options
-CFLAGS = -Wall -Wextra -Werror -pthread
+CFLAGS = -Wall -Wextra -Werror -pthread -g
 
 # Asan flag
 # CFLAGS = -Wall -Wextra -Werror -fsanitize=address -static-libsan
