@@ -6,7 +6,7 @@
 /*   By: flverge <flverge@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 21:18:38 by flverge           #+#    #+#             */
-/*   Updated: 2024/04/02 16:47:21 by flverge          ###   ########.fr       */
+/*   Updated: 2024/04/02 19:05:22 by flverge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,78 +14,35 @@
 
 // 1.16.15
 
-t_pars *init_struct(int ac, char **av)
+void init_struct(int ac, char **av, t_pars *pars)
 {
-	t_pars *new_node;
-
-	new_node = malloc(sizeof(t_pars));
-	if (!new_node)
-		return NULL;
-	new_node->nb_philos = ft_atoi(av[1]);
-	new_node->time2die = ft_atoi(av[2]) * 1000; // conversion to microseconds
-	new_node->time2eat = ft_atoi(av[3]) * 1000;
-	new_node->time2sleep = ft_atoi(av[4]) * 1000;
+	pars->nb_philos = ft_atoi(av[1]);
+	pars->time2die = ft_atoi(av[2]);
+	pars->time2eat = ft_atoi(av[3]);
+	pars->time2sleep = ft_atoi(av[4]);
 	if (ac == 6 && av[5])
 	{
-		new_node->max_meals = ft_atoi(av[5]);
-		new_node->infinite_meals = false;
+		pars->max_meals = ft_atoi(av[5]);
+		pars->infinite_meals = false;
 	}
 	else
 	{
-		new_node->max_meals = -1;
-		new_node->infinite_meals = true;
+		pars->max_meals = -1;
+		pars->infinite_meals = true;
 	}
-	
-	new_node->is_diner_over = false;
-	
-	new_node->every_thread_ready = false; // syncronization of threads
-
-	new_node->threads_running_nb = 0;
-
-	ft_mutex(INIT, &new_node->mutex_pars);
-	ft_mutex(INIT, &new_node->mutex_write);
-
-	new_node->forks = secure_malloc(sizeof(t_fork) * new_node->nb_philos);
-	size_t i = 0;
-	//init forks mutexes
-	while (i < new_node->nb_philos)
-	{
-		ft_mutex(INIT, &new_node->forks[i].fork);
-		new_node->forks[i].id_fork = i; // init the ids of forks
-		i++;
-	}
-	
-	new_node->philos = secure_malloc(sizeof(t_philo) * new_node->nb_philos);
-	i = 0;
-	// init philo thread
-	t_philo *philo;
-	while (i < new_node->nb_philos)
-	{
-		philo = &new_node->philos[i];
-		philo->id = i;
-		philo->nb_meals = 0;
-		philo->is_philo_full = false;
-		philo->relink_pars = *new_node;
-		ft_mutex(INIT, &philo->philo_mutex);
-		
-		get_forks(philo, new_node->forks, i);
-		i++;
-	}
-
-	return (new_node);
 }
 
 int main(int ac, char **av)
 {
-	t_pars *data;
+	t_pars pars;
 	pthread_mutex_t mutex;
 
-	data = NULL;
+	pars = NULL;
 	if (arg_checker(ac, av) == true)
 	{
 		// ! Need to init philo and fork structs
-		data = init_struct(ac, av);
-		if (data_wrong_time(&data))
+		init_struct(ac, av, &pars);
+		if (data_wrong_time(&pars))
 		{
 			free(data);
 			custom_exit("Time should be above 60ms");

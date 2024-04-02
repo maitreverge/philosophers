@@ -56,6 +56,17 @@ typedef enum e_philo_status
 }		t_philo_status;
 
 
+typedef struct s_philo
+{
+	size_t id;
+	size_t nb_meals;
+	bool is_philo_full;
+	pthread_t id_thread;
+	mutex *first_fork;
+	mutex *second_fork;
+
+}		t_philo;
+
 typedef struct s_pars
 {
 	size_t nb_philos;
@@ -67,16 +78,6 @@ typedef struct s_pars
 	// size_t meal_counter;
 }		t_pars;
 
-typedef struct s_philo
-{
-	size_t id;
-	size_t nb_meals;
-	bool is_philo_full;
-	pthread_t id_thread;
-	mutex *first_fork;
-	mutex *second_fork;
-
-}		t_philo;
 
 static bool nb_args_ok(int ac);
 static void	error_digit(void);
