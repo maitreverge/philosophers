@@ -93,5 +93,8 @@ size_t	ft_atoi(const char *str);
 bool	ft_isdigit(int c);
 
 
+// print struct function
+void	print_struct(t_pars *data);
+
 
 #endif
