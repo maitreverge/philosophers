@@ -6,7 +6,7 @@
 /*   By: flverge <flverge@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 21:18:38 by flverge           #+#    #+#             */
-/*   Updated: 2024/04/03 18:22:56 by flverge          ###   ########.fr       */
+/*   Updated: 2024/04/03 18:35:50 by flverge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void init_struct(char **av, t_pars *pars)
 
 	pars->start_simulation = get_time();
 
-	// init mutexes
+	// ! init mutexes and maybe more
 	ft_mutex(INIT, &pars->write_mutex);
 
 	// init philo struct
@@ -42,13 +42,14 @@ static void init_struct(char **av, t_pars *pars)
 	{
 		pars->philos[i].id = i + 1;
 		pars->philos[i].is_philo_full = false;
+		pars->philos[i].is_philo_dead = false;
 		pars->philos[i].nb_meals = 0;
 		pars->philos[i].time_last_meal = pars->start_simulation;
 		pars->philos[i].right_fork = NULL;
 		ft_mutex(INIT, &pars->philos[i].left_fork);
 		if (pars->nb_philos == 1)
 			return ;
-		// If the current philosopher is the last one in the array
+		// if the current philosopher is the last one in the array
 		if (i == pars->nb_philos - 1)
 			// Set the right fork of the current philosopher to be the same as its left fork.
 			// This is because in a circular table setup, the last philosopher's right fork is the first philosopher's left fork.
