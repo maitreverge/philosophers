@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   init_check.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: flverge <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: flverge <flverge@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 17:52:47 by flverge           #+#    #+#             */
-/*   Updated: 2024/03/14 18:20:10 by flverge          ###   ########.fr       */
+/*   Updated: 2024/04/03 16:01:13 by flverge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-static bool nb_args_ok(int ac)
+bool nb_args_ok(int ac)
 {
 	if (ac < 5)
 	{
@@ -50,7 +50,7 @@ void	print_usage(void)
 	printf(RESET);
 	printf("[ ⚠️  Next Argument Optional ⚠️  ]");
 	printf(YELLOW);
-	printf("  <nb_of_time_each_philo_must_eat>\n\n");
+	printf("  <nb_of_meals>\n\n");
 	printf(RESET); 
 }
 

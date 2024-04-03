@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   libft_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: flverge <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: flverge <flverge@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 12:58:37 by flverge           #+#    #+#             */
-/*   Updated: 2024/03/14 17:36:03 by flverge          ###   ########.fr       */
+/*   Updated: 2024/04/03 15:58:41 by flverge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-static bool	ft_isspace(int c)
+bool	ft_isspace(int c)
 {
 	if ((c >= 9 && c <= 13) || c == 32)
 		return true;

@@ -79,21 +79,18 @@ typedef struct s_pars
 }		t_pars;
 
 
-static bool nb_args_ok(int ac);
-static void	error_digit(void);
+bool nb_args_ok(int ac);
 void	print_usage(void);
 bool arg_checker(int ac, char **av);
-
-
-static bool	ft_isspace(int c);
-size_t	ft_atoi(const char *str);
-bool	ft_isdigit(int c);
-
-void	print_struct(t_pars **data);
 
 bool	is_philo_digit(int c);
 void	custom_exit(char *s);
 void	*secure_malloc(size_t size);
+void	ft_mutex(int code, pthread_mutex_t *mutex);
+
+bool	ft_isspace(int c);
+size_t	ft_atoi(const char *str);
+bool	ft_isdigit(int c);
 
 
 
