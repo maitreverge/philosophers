@@ -6,7 +6,7 @@
 /*   By: flverge <flverge@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 21:18:38 by flverge           #+#    #+#             */
-/*   Updated: 2024/04/03 18:22:33 by flverge          ###   ########.fr       */
+/*   Updated: 2024/04/03 18:22:56 by flverge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static void init_struct(char **av, t_pars *pars)
 		if (i == pars->nb_philos - 1)
 			// Set the right fork of the current philosopher to be the same as its left fork.
 			// This is because in a circular table setup, the last philosopher's right fork is the first philosopher's left fork.
-			pars->philos[i].right_fork = &pars->philos[i].left_fork;
+			pars->philos[i].right_fork = &pars->philos[0].left_fork;
 		else
 			// For all other philosophers, their right fork is the left fork of the next philosopher.
 			pars->philos[i].right_fork = &pars->philos[i + 1].left_fork;
