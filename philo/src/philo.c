@@ -6,7 +6,7 @@
 /*   By: flverge <flverge@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 21:18:38 by flverge           #+#    #+#             */
-/*   Updated: 2024/04/03 16:38:41 by flverge          ###   ########.fr       */
+/*   Updated: 2024/04/03 16:46:24 by flverge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,7 @@ static void init_struct(char **av, t_pars *pars)
 	// ! init as much philos as necessary
 	pars->philos = secure_malloc(sizeof(t_philo) * pars->nb_philos);
 
-	
-}
+	pars->start_simulation = get_time();
 
 int main(int ac, char **av)
 {

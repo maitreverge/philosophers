@@ -98,5 +98,9 @@ bool	ft_isdigit(int c);
 // print struct function
 void	print_struct(t_pars *data);
 
+// time_fucntions.c
+long get_time(void);
+
+
 
 #endif
