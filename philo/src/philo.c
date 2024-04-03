@@ -6,7 +6,7 @@
 /*   By: flverge <flverge@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 21:18:38 by flverge           #+#    #+#             */
-/*   Updated: 2024/04/03 18:35:50 by flverge          ###   ########.fr       */
+/*   Updated: 2024/04/03 18:36:48 by flverge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int main(int ac, char **av)
 		// print_struct(&pars);
 		
 		// ! start the dinner
-		// turbo_dinner(&pars);
+		turbo_dinner(&pars);
 		
 		// ! clean all the stuff
 		// free(pars);

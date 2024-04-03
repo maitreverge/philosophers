@@ -103,6 +103,11 @@ void	print_struct(t_pars *data);
 // time_fucntions.c
 long get_time(void);
 
+// turbo_dinner.c
+void	turbo_dinner(t_pars *pars);
+
+
+
 
 
 #endif
