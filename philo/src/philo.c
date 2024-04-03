@@ -6,7 +6,7 @@
 /*   By: flverge <flverge@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 21:18:38 by flverge           #+#    #+#             */
-/*   Updated: 2024/04/03 16:46:24 by flverge          ###   ########.fr       */
+/*   Updated: 2024/04/03 17:30:50 by flverge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,23 @@ static void init_struct(char **av, t_pars *pars)
 	pars->philos = secure_malloc(sizeof(t_philo) * pars->nb_philos);
 
 	pars->start_simulation = get_time();
+
+	// init mutexes
+	ft_mutex(INIT, &pars->write_mutex);
+
+	// init philo struct
+	size_t i = 0;
+	while (i < pars->nb_philos)
+	{
+		pars->philos[i].id = i + 1;
+		pars->philos[i].is_philo_full = false;
+		pars->philos[i].nb_meals = 0;
+		pars->philos[i].time_last_meal = pars->start_simulation;
+		
+		i++;
+	}
+	
+}
 
 int main(int ac, char **av)
 {

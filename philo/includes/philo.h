@@ -62,9 +62,9 @@ typedef struct s_philo
 	size_t nb_meals;
 	bool is_philo_full;
 	pthread_t id_thread;
-	mutex *first_fork;
-	mutex *second_fork;
-
+	mutex *left_fork;
+	mutex *right_fork;
+	long time_last_meal;
 }		t_philo;
 
 typedef struct s_pars
@@ -77,6 +77,7 @@ typedef struct s_pars
 	int max_meals;
 	t_philo *philos;
 	long start_simulation;
+	mutex write_mutex;
 	// size_t meal_counter;
 }		t_pars;
 
