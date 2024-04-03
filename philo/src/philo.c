@@ -6,7 +6,7 @@
 /*   By: flverge <flverge@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 21:18:38 by flverge           #+#    #+#             */
-/*   Updated: 2024/04/03 16:25:36 by flverge          ###   ########.fr       */
+/*   Updated: 2024/04/03 16:38:41 by flverge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,10 @@ static void init_struct(char **av, t_pars *pars)
 		pars->max_meals = -1;
 		pars->infinite_meals = true;
 	}
+	// ! init as much philos as necessary
 	pars->philos = secure_malloc(sizeof(t_philo) * pars->nb_philos);
+
+	
 }
 
 int main(int ac, char **av)

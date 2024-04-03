@@ -76,6 +76,7 @@ typedef struct s_pars
 	bool 	infinite_meals;
 	int max_meals;
 	t_philo *philos;
+	long start_simulation;
 	// size_t meal_counter;
 }		t_pars;
 
