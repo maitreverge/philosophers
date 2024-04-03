@@ -75,6 +75,7 @@ typedef struct s_pars
 	size_t time2sleep;
 	bool 	infinite_meals;
 	int max_meals;
+	t_philo *philos;
 	// size_t meal_counter;
 }		t_pars;
 
