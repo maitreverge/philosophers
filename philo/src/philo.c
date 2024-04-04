@@ -6,80 +6,110 @@
 /*   By: flverge <flverge@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 21:18:38 by flverge           #+#    #+#             */
-/*   Updated: 2024/04/03 18:36:48 by flverge          ###   ########.fr       */
+/*   Updated: 2024/04/04 17:24:56 by flverge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-static void init_struct(char **av, t_pars *pars)
+int	check_death2(t_p *p)
 {
-	pars->nb_philos = ft_atoi(av[1]);
-	pars->time2die = ft_atoi(av[2]);
-	pars->time2eat = ft_atoi(av[3]);
-	pars->time2sleep = ft_atoi(av[4]);
-	if (av[5])
+	pthread_mutex_lock(&p->a.dead);
+	if (p->a.stop)
 	{
-		pars->max_meals = ft_atoi(av[5]);
-		pars->infinite_meals = false;
+		pthread_mutex_unlock(&p->a.dead);
+		return (1);
 	}
-	else
+	pthread_mutex_unlock(&p->a.dead);
+	return (0);
+}
+
+void	stop(t_p *p)
+{
+	int	i;
+
+	i = -1;
+	while (!check_death2(p))
+		ft_usleep(1);
+	while (++i < p->a.nb_philos)
+		pthread_join(p->ph[i].thread_id, NULL);
+	pthread_mutex_destroy(&p->a.write_mutex);
+	i = -1;
+	while (++i < p->a.nb_philos)
+		pthread_mutex_destroy(&p->ph[i].left_fork);
+	if (p->a.stop == 2)
+		printf("Each philosopher ate %d time(s)\n", p->a.max_meals);
+	free(p->ph);
+}
+
+void	init_mutex(t_p *p)
+{
+	pthread_mutex_init(&p->a.write_mutex, NULL);
+	pthread_mutex_init(&p->a.dead, NULL);
+	pthread_mutex_init(&p->a.time_eat, NULL);
+	pthread_mutex_init(&p->a.is_full, NULL);
+}
+
+int	initialize(t_p *p) // ! DONE except mutexes
+{
+	int	i;
+
+	i = 0;
+	p->a.start_simulation = actual_time();
+	p->a.stop = 0;
+	p->a.nb_p_finish = 0;
+	init_mutex(p);
+	while (i < p->a.nb_philos)
 	{
-		pars->max_meals = -1;
-		pars->infinite_meals = true;
-	}
-	// ! init as much philos as necessary
-	pars->philos = secure_malloc(sizeof(t_philo) * pars->nb_philos);
-
-	pars->start_simulation = get_time();
-
-	// ! init mutexes and maybe more
-	ft_mutex(INIT, &pars->write_mutex);
-
-	// init philo struct
-	size_t i = 0;
-	while (i < pars->nb_philos)
-	{
-		pars->philos[i].id = i + 1;
-		pars->philos[i].is_philo_full = false;
-		pars->philos[i].is_philo_dead = false;
-		pars->philos[i].nb_meals = 0;
-		pars->philos[i].time_last_meal = pars->start_simulation;
-		pars->philos[i].right_fork = NULL;
-		ft_mutex(INIT, &pars->philos[i].left_fork);
-		if (pars->nb_philos == 1)
-			return ;
-		// if the current philosopher is the last one in the array
-		if (i == pars->nb_philos - 1)
-			// Set the right fork of the current philosopher to be the same as its left fork.
-			// This is because in a circular table setup, the last philosopher's right fork is the first philosopher's left fork.
-			pars->philos[i].right_fork = &pars->philos[0].left_fork;
+		p->ph[i].id = i + 1;
+		p->ph[i].time_last_meal = p->a.start_simulation;
+		p->ph[i].nb_meals = 0;
+		p->ph[i].is_full = 0;
+		p->ph[i].right_fork = NULL;
+		pthread_mutex_init(&p->ph[i].left_fork, NULL);
+		if (p->a.nb_philos == 1)
+			return (1);
+		if (i == p->a.nb_philos - 1)
+			p->ph[i].right_fork = &p->ph[0].left_fork;
 		else
-			// For all other philosophers, their right fork is the left fork of the next philosopher.
-			pars->philos[i].right_fork = &pars->philos[i + 1].left_fork;
+			p->ph[i].right_fork = &p->ph[i + 1].left_fork;
 		i++;
 	}
+	return (1);
+}
+
+static void init_struct(int ac, char **av, t_p *p)
+{
+	p->a.nb_philos = ft_atoi(av[1]);
+	p->a.time2die = ft_atoi(av[2]);
+	p->a.time2eat = ft_atoi(av[3]);
+	p->a.time2sleep = ft_atoi(av[4]);
+	p->a.max_meals = -1;
+	if (ac == 6)
+		p->a.max_meals = ft_atoi(av[5]);
+	if (p->a.nb_philos <= 0 || p->a.time2die <= 0 || p->a.time2eat <= 0 \
+		|| p->a.time2sleep <= 0)
+		return (0);
+	return (1);
 	
 }
 
 int main(int ac, char **av)
 {
-	t_pars pars;
+	t_p p;
 	pthread_mutex_t mutex;
 
-	// pars = 0;
 	if (arg_checker(ac, av) == true)
 	{
 		// ! Need to init philo and fork structs
-		init_struct(av, &pars);
-		// print_struct(&pars);
-		
-		// ! start the dinner
-		turbo_dinner(&pars);
-		
-		// ! clean all the stuff
-		// free(pars);
-		ft_mutex(DESTROY, &mutex);
+		init_struct(ac, av, &p);
+		p.ph = secure_malloc(sizeof(t_philo) * p.a.nb_philos);
+		if (!initialize(&p) || !turbo_dinnner(&p))
+		{
+			free(p.ph);
+			return (0);
+		}
+		stop(&p);
 	}
 	return (0);
 }

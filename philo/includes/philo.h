@@ -33,80 +33,62 @@
 #define CYAN    "\033[0;36m"
 #define RESET   "\033[0m"
 
-typedef pthread_mutex_t mutex;
-
-typedef struct s_philo t_philo;
-
-typedef enum e_mutex_code
+typedef struct s_arg
 {
-	INIT,
-	LOCK,
-	UNLOCK,
-	DESTROY
-} t_mutex_code;
-
-typedef enum e_philo_status
-{
-	EAT,
-	SLEEP,
-	THINK,
-	DIE,
-	TAKE_FORK_1,
-	TAKE_FORK_2,
-}		t_philo_status;
-
+	int						nb_philos;
+	int						time2die;
+	int						time2eat;
+	int						time2sleep;
+	int						max_meals;
+	long int				start_simulation;
+	pthread_mutex_t			write_mutex;
+	pthread_mutex_t			dead;
+	pthread_mutex_t			time_eat;
+	pthread_mutex_t			is_full;
+	int						nb_p_finish;
+	int						stop;
+}							t_arg;
 
 typedef struct s_philo
 {
-	size_t id;
-	size_t nb_meals;
-	bool is_philo_full;
-	bool is_philo_dead;
-	long time_last_meal;
-	pthread_t id_thread;
-	pthread_t id_death_thread;
-	mutex *left_fork;
-	mutex *right_fork;
-}		t_philo;
+	int						id;
+	pthread_t				thread_id;
+	pthread_t				thread_death_id;
+	pthread_mutex_t			*right_fork;
+	pthread_mutex_t			left_fork;
+	t_arg					*pa;
+	long int				time_last_meal;
+	unsigned int			nb_meals;
+	int						is_full;
+}							t_philo;
 
-typedef struct s_pars
+typedef struct s_p
 {
-	size_t nb_philos;
-	size_t time2die;
-	size_t time2eat;
-	size_t time2sleep;
-	bool 	infinite_meals;
-	int max_meals;
-	t_philo *philos;
-	long start_simulation;
-	mutex write_mutex;
-}		t_pars;
+	t_philo					*ph;
+	t_arg					a;
+}							t_p;
 
+/*
+** functions
+*/
+
+int				parse_args(int argc, char **argv, t_p *p);
+int				initialize(t_p *p);
+int				custom_exit(char *str);
+void			write_status(char *str, t_philo *ph);
+long int		actual_time(void);
+void			ft_putstright_forkd(char *s, int fd);
+void			ft_usleep(long int time_in_ms);
+int				threading(t_p *p);
+void			activity(t_philo *ph);
+int				check_death(t_philo *ph, int i);
+int				ft_strlen(char *str);
 
 bool nb_args_ok(int ac);
 void	print_usage(void);
 bool arg_checker(int ac, char **av);
 
-bool	is_philo_digit(int c);
-void	custom_exit(char *s);
 void	*secure_malloc(size_t size);
-void	ft_mutex(int code, pthread_mutex_t *mutex);
-
-bool	ft_isspace(int c);
-size_t	ft_atoi(const char *str);
-bool	ft_isdigit(int c);
-
-
-// print struct function
-void	print_struct(t_pars *data);
-
-// time_fucntions.c
-long get_time(void);
-void	ft_usleep(long time_input);
-
-
-// turbo_dinner.c
-void	turbo_dinner(t_pars *pars);
 
 
 
