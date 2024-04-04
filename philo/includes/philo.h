@@ -102,6 +102,8 @@ void	print_struct(t_pars *data);
 
 // time_fucntions.c
 long get_time(void);
+void	ft_usleep(long time_input);
+
 
 // turbo_dinner.c
 void	turbo_dinner(t_pars *pars);
