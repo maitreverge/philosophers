@@ -82,17 +82,20 @@ typedef struct s_p
 
 // int				parse_args(int argc, char **argv, t_p *p);
 int				initialize(t_p *p);
-int				custom_exit(char *str);
+void				custom_exit(char *str);
 void			write_status(char *str, t_philo *ph);
 // long int		get_time(void);
 void			ft_putstright_forkd(char *s, int fd);
 // void			ft_usleep(long int time_in_ms);
 
 
-int				turbo_dinner(t_p *p);
+// int				turbo_dinner(t_p *p);
+int	turbo_dinner(t_p *p);
+
 void			activity(t_philo *ph);
 int				is_philo_dead(t_philo *ph, int i);
 int				ft_strlen(char *str);
+
 
 long get_time(void);
 void	ft_usleep(long time_input);
@@ -103,6 +106,15 @@ void	print_usage(void);
 bool arg_checker(int ac, char **av);
 
 void	*secure_malloc(size_t size);
+
+bool	is_philo_digit(int c);
+
+bool	ft_isspace(int c);
+size_t	ft_atoi(const char *str);
+bool	ft_isdigit(int c);
+
+
+
 
 
 #endif

@@ -1,6 +1,6 @@
 #include "../includes/philo.h"
 
-void	print_struct(t_pars *data)
+void	print_struct(t_arg *data)
 {
 	// t_pars *data;
 
@@ -8,9 +8,9 @@ void	print_struct(t_pars *data)
 
 	if (!data)
 		return ;
-	printf("Number of philo = %zu\n", data->nb_philos);
-	printf("Time To Die = %zu\n", data->time2die);
-	printf("Time To Eat = %zu\n", data->time2eat);
-	printf("Time To Sleep = %zu\n", data->time2sleep);
+	printf("Number of philo = %i\n", data->nb_philos);
+	printf("Time To Die = %i\n", data->time2die);
+	printf("Time To Eat = %i\n", data->time2eat);
+	printf("Time To Sleep = %i\n", data->time2sleep);
 	printf("Nb of maximum meals = %i\n", data->max_meals);
 }

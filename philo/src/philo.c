@@ -6,13 +6,11 @@
 /*   By: flverge <flverge@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 21:18:38 by flverge           #+#    #+#             */
-/*   Updated: 2024/04/04 18:41:24 by flverge          ###   ########.fr       */
+/*   Updated: 2024/04/04 18:49:40 by flverge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
-
-
 
 int	check_death(t_p *p)
 {
@@ -80,7 +78,7 @@ int	initialize(t_p *p) // ! DONE except mutexes
 	return (1);
 }
 
-static void init_struct(int ac, char **av, t_p *p)
+static bool init_struct(int ac, char **av, t_p *p)
 {
 	p->a.nb_philos = ft_atoi(av[1]);
 	p->a.time2die = ft_atoi(av[2]);
@@ -89,24 +87,21 @@ static void init_struct(int ac, char **av, t_p *p)
 	p->a.max_meals = -1;
 	if (ac == 6)
 		p->a.max_meals = ft_atoi(av[5]);
-	if (p->a.nb_philos <= 0 || p->a.time2die <= 0 || p->a.time2eat <= 0 \
-		|| p->a.time2sleep <= 0)
-		return (0);
-	return (1);
+	if (p->a.nb_philos <= 0 || p->a.time2die <= 0 || p->a.time2eat <= 0 || p->a.time2sleep <= 0)
+		return false;
+	return true;
 	
 }
 
 int main(int ac, char **av)
 {
 	t_p p;
-	pthread_mutex_t mutex;
+	// pthread_mutex_t mutex;
 
-	if (arg_checker(ac, av) == true)
+	if (arg_checker(ac, av) == true && init_struct(ac, av, &p))
 	{
-		// ! Need to init philo and fork structs
-		init_struct(ac, av, &p);
 		p.ph = secure_malloc(sizeof(t_philo) * p.a.nb_philos);
-		if (!initialize(&p) || !turbo_dinnner(&p))
+		if (!initialize(&p) || !turbo_dinner(&p))
 		{
 			free(p.ph);
 			return (0);

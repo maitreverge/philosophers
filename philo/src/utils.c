@@ -6,7 +6,7 @@
 /*   By: flverge <flverge@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 17:29:34 by flverge           #+#    #+#             */
-/*   Updated: 2024/04/04 18:36:51 by flverge          ###   ########.fr       */
+/*   Updated: 2024/04/04 18:51:54 by flverge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ bool	is_philo_digit(int c)
 	return (false);
 }
 
-void	custom_exit(char *s)
+void	custom_exit(char *str)
 {
-	printf(RED"⛔ %s ⛔\n"RESET, s);
+	printf(RED"⛔ %s ⛔\n"RESET, str);
 	exit(EXIT_FAILURE);
 }
 
