@@ -33,6 +33,14 @@
 #define CYAN    "\033[0;36m"
 #define RESET   "\033[0m"
 
+typedef enum e_mutex_code
+{
+	INIT,
+	LOCK,
+	UNLOCK,
+	DESTROY
+} t_mutex_code;
+
 typedef struct s_arg
 {
 	int						nb_philos;
@@ -72,26 +80,29 @@ typedef struct s_p
 ** functions
 */
 
-int				parse_args(int argc, char **argv, t_p *p);
+// int				parse_args(int argc, char **argv, t_p *p);
 int				initialize(t_p *p);
 int				custom_exit(char *str);
 void			write_status(char *str, t_philo *ph);
-long int		actual_time(void);
+// long int		get_time(void);
 void			ft_putstright_forkd(char *s, int fd);
-void			ft_usleep(long int time_in_ms);
-int				threading(t_p *p);
+// void			ft_usleep(long int time_in_ms);
+
+
+int				turbo_dinner(t_p *p);
 void			activity(t_philo *ph);
-int				check_death(t_philo *ph, int i);
+int				is_philo_dead(t_philo *ph, int i);
 int				ft_strlen(char *str);
+
+long get_time(void);
+void	ft_usleep(long time_input);
+
 
 bool nb_args_ok(int ac);
 void	print_usage(void);
 bool arg_checker(int ac, char **av);
 
 void	*secure_malloc(size_t size);
-
-
-
 
 
 #endif

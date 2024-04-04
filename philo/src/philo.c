@@ -6,13 +6,15 @@
 /*   By: flverge <flverge@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 21:18:38 by flverge           #+#    #+#             */
-/*   Updated: 2024/04/04 17:24:56 by flverge          ###   ########.fr       */
+/*   Updated: 2024/04/04 18:41:24 by flverge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-int	check_death2(t_p *p)
+
+
+int	check_death(t_p *p)
 {
 	pthread_mutex_lock(&p->a.dead);
 	if (p->a.stop)
@@ -29,7 +31,7 @@ void	stop(t_p *p)
 	int	i;
 
 	i = -1;
-	while (!check_death2(p))
+	while (!check_death(p))
 		ft_usleep(1);
 	while (++i < p->a.nb_philos)
 		pthread_join(p->ph[i].thread_id, NULL);
@@ -55,7 +57,7 @@ int	initialize(t_p *p) // ! DONE except mutexes
 	int	i;
 
 	i = 0;
-	p->a.start_simulation = actual_time();
+	p->a.start_simulation = get_time();
 	p->a.stop = 0;
 	p->a.nb_p_finish = 0;
 	init_mutex(p);
