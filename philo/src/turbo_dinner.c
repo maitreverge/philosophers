@@ -6,7 +6,7 @@
 /*   By: flverge <flverge@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 17:26:35 by flverge           #+#    #+#             */
-/*   Updated: 2024/04/05 11:12:16 by flverge          ###   ########.fr       */
+/*   Updated: 2024/04/05 11:23:59 by flverge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ void	*is_dead(void	*data)
 	ft_usleep(ph->pa->time2die + 1);
 	pthread_mutex_lock(&ph->pa->time_eat);
 	pthread_mutex_lock(&ph->pa->is_full);
-	if (!is_philo_dead(ph, 0) && !ph->is_full && ((get_time() - ph->time_last_meal) \
+	if (!is_philo_dead(ph, 0) && !ph->is_full
+		&& ((get_time() - ph->time_last_meal) \
 		>= (long)(ph->pa->time2die)))
 	{
 		pthread_mutex_unlock(&ph->pa->time_eat);
@@ -83,7 +84,7 @@ int	turbo_dinner(t_p *p)
 	while (i < p->a.nb_philos)
 	{
 		p->ph[i].pa = &p->a;
-		if (pthread_create(&p->ph[i].thread_id, NULL, ft_dinner, &p->ph[i]) != 0)
+		if (pthread_create(&p->ph[i].thread_id, 0, ft_dinner, &p->ph[i]) != 0)
 		{
 			custom_exit("Pthread did not return 0\n");
 			return (0);
