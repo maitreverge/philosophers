@@ -6,7 +6,7 @@
 #    By: flverge <flverge@student.42perpignan.fr    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/17 21:19:56 by flverge           #+#    #+#              #
-#    Updated: 2024/04/02 09:14:39 by flverge          ###   ########.fr        #
+#    Updated: 2024/04/05 10:10:35 by flverge          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,9 +49,7 @@ $(NAME): $(OBJ)
 	@echo "$(BOLD)$(RED)🛠️            Compiling Philosophers...      🛠️$(RESET)"
 	@echo "\n"
 	@$(CC) $(CFLAGS) $(OBJ) $(INC) -o $(NAME)
-	@echo "🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳"
-	@echo "$(BOLD)$(GREEN)🥳    Philosophers fully compiled, ready to use     🥳$(RESET)"
-	@echo "🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳"
+	@echo "$(BOLD)$(GREEN)🚀    Philosophers fully compiled, ready to use     🚀$(RESET)"
 	@echo "\n"
 
 clean:

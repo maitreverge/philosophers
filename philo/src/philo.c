@@ -6,7 +6,7 @@
 /*   By: flverge <flverge@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 21:18:38 by flverge           #+#    #+#             */
-/*   Updated: 2024/04/04 18:49:40 by flverge          ###   ########.fr       */
+/*   Updated: 2024/04/05 10:07:58 by flverge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,6 @@ static bool init_struct(int ac, char **av, t_p *p)
 int main(int ac, char **av)
 {
 	t_p p;
-	// pthread_mutex_t mutex;
 
 	if (arg_checker(ac, av) == true && init_struct(ac, av, &p))
 	{
