@@ -6,7 +6,7 @@
 /*   By: flverge <flverge@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 21:18:38 by flverge           #+#    #+#             */
-/*   Updated: 2024/04/05 12:06:13 by flverge          ###   ########.fr       */
+/*   Updated: 2024/04/05 12:49:05 by flverge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,13 @@
 
 static int	check_death(t_p *p)
 {
-	// pthread_mutex_lock(&p->a.dead);
 	ft_mutex(LOCK, &p->a.dead);
 	if (p->a.stop)
 	{
-		// pthread_mutex_unlock(&p->a.dead);
 		ft_mutex(UNLOCK, &p->a.dead);
 		return (1);
 	}
-	// pthread_mutex_unlock(&p->a.dead);
-		ft_mutex(UNLOCK, &p->a.dead);
+	ft_mutex(UNLOCK, &p->a.dead);
 	return (0);
 }
 
@@ -36,12 +33,10 @@ static void	stop(t_p *p)
 		ft_usleep(1);
 	while (++i < p->a.nb_philos)
 		pthread_join(p->ph[i].thread_id, NULL);
-	// pthread_mutex_destroy(&p->a.write_mutex);
 	ft_mutex(DESTROY, &p->a.write_mutex);
 	i = -1;
 	while (++i < p->a.nb_philos)
 		ft_mutex(DESTROY, &p->ph[i].left_fork);
-		// pthread_mutex_destroy(&p->ph[i].left_fork);
 	if (p->a.stop == 2)
 		printf("Each philosopher ate %d time(s)\n", p->a.max_meals);
 	free(p->ph);
@@ -63,7 +58,6 @@ static int	initialize(t_p *p)
 		p->ph[i].nb_meals = 0;
 		p->ph[i].is_full = 0;
 		p->ph[i].right_fork = NULL;
-		// pthread_mutex_init(&p->ph[i].left_fork, NULL);
 		ft_mutex(INIT, &p->ph[i].left_fork);
 		if (p->a.nb_philos == 1)
 			return (1);
