@@ -6,7 +6,7 @@
 /*   By: flverge <flverge@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 21:18:38 by flverge           #+#    #+#             */
-/*   Updated: 2024/04/05 10:07:58 by flverge          ###   ########.fr       */
+/*   Updated: 2024/04/05 11:01:51 by flverge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,9 +87,15 @@ static bool init_struct(int ac, char **av, t_p *p)
 	p->a.max_meals = -1;
 	if (ac == 6)
 		p->a.max_meals = ft_atoi(av[5]);
-	if (p->a.nb_philos <= 0 || p->a.time2die <= 0 || p->a.time2eat <= 0 || p->a.time2sleep <= 0)
+	if (p->a.nb_philos <= 0 || p->a.time2die <= 0 || p->a.time2eat <= 0 || p->a.time2sleep <= 0 || p->a.max_meals <= 0)
 		return false;
 	return true;
+	
+}
+
+void alone_philo(t_p *p)
+{
+	
 	
 }
 
@@ -100,7 +106,13 @@ int main(int ac, char **av)
 	if (arg_checker(ac, av) == true && init_struct(ac, av, &p))
 	{
 		p.ph = secure_malloc(sizeof(t_philo) * p.a.nb_philos);
-		if (!initialize(&p) || !turbo_dinner(&p))
+		if (p.a.nb_philos == 1)
+		{
+			alone_philo(&p);
+			free(p.ph);
+			return (0);
+		}
+		else (!initialize(&p) || !turbo_dinner(&p))
 		{
 			free(p.ph);
 			return (0);
