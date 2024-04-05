@@ -6,7 +6,7 @@
 /*   By: flverge <flverge@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 17:26:35 by flverge           #+#    #+#             */
-/*   Updated: 2024/04/05 11:23:59 by flverge          ###   ########.fr       */
+/*   Updated: 2024/04/05 11:49:47 by flverge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	is_philo_dead(t_philo *ph, int i)
 	return (0);
 }
 
-void	*is_dead(void	*data)
+static void	*is_dead(void	*data)
 {
 	t_philo					*ph;
 
@@ -50,7 +50,7 @@ void	*is_dead(void	*data)
 	return (NULL);
 }
 
-void	*ft_dinner(void *data)
+static void	*ft_dinner(void *data)
 {
 	t_philo					*ph;
 

@@ -6,13 +6,13 @@
 /*   By: flverge <flverge@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 21:18:38 by flverge           #+#    #+#             */
-/*   Updated: 2024/04/05 11:17:17 by flverge          ###   ########.fr       */
+/*   Updated: 2024/04/05 11:48:07 by flverge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-int	check_death(t_p *p)
+static int	check_death(t_p *p)
 {
 	pthread_mutex_lock(&p->a.dead);
 	if (p->a.stop)
@@ -24,7 +24,7 @@ int	check_death(t_p *p)
 	return (0);
 }
 
-void	stop(t_p *p)
+static void	stop(t_p *p)
 {
 	int	i;
 
@@ -42,15 +42,7 @@ void	stop(t_p *p)
 	free(p->ph);
 }
 
-void	init_mutex(t_p *p)
-{
-	pthread_mutex_init(&p->a.write_mutex, NULL);
-	pthread_mutex_init(&p->a.dead, NULL);
-	pthread_mutex_init(&p->a.time_eat, NULL);
-	pthread_mutex_init(&p->a.is_full, NULL);
-}
-
-int	initialize(t_p *p) // ! DONE except mutexes
+static int	initialize(t_p *p)
 {
 	int	i;
 
@@ -91,12 +83,6 @@ static bool	init_struct(int ac, char **av, t_p *p)
 		|| p->a.time2sleep <= 0 || p->a.max_meals == 0)
 		return (false);
 	return (true);
-}
-
-void	alone_philo(t_p *p)
-{
-	printf("1 Philo 1 has taken a fork\n");
-	printf("%i Philo 1 dies\n", p->a.time2die);
 }
 
 int	main(int ac, char **av)

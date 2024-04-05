@@ -6,7 +6,7 @@
 /*   By: flverge <flverge@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 21:18:18 by flverge           #+#    #+#             */
-/*   Updated: 2024/04/05 11:14:37 by flverge          ###   ########.fr       */
+/*   Updated: 2024/04/05 11:55:17 by flverge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,34 +76,40 @@ typedef struct s_p
 	t_arg					a;
 }							t_p;
 
-// ! functions
-int				initialize(t_p *p);
-void				custom_exit(char *str);
-void			write_status(char *str, t_philo *ph);
-void			ft_putstright_forkd(char *s, int fd);
+// dinner_routine.c
+void	write_status(char *str, t_philo *ph);
+void	activity(t_philo *ph);
 
+// init_check.c
 
-int	turbo_dinner(t_p *p);
-
-void			activity(t_philo *ph);
-int				is_philo_dead(t_philo *ph, int i);
-int				ft_strlen(char *str);
-
-
-long get_time(void);
-void	ft_usleep(long time_input);
-
-
-bool nb_args_ok(int ac);
+bool	nb_args_ok(int ac);
 void	print_usage(void);
-bool arg_checker(int ac, char **av);
+bool	arg_checker(int ac, char **av);
 
-void	*secure_malloc(size_t size);
-
-bool	is_philo_digit(int c);
-
+// libft_utils.c
 bool	ft_isspace(int c);
 size_t	ft_atoi(const char *str);
 bool	ft_isdigit(int c);
+
+// time_functions.c
+long	get_time(void);
+void	ft_usleep(long time_input);
+
+// turbo_dinner.c
+int		is_philo_dead(t_philo *ph, int i);
+int		turbo_dinner(t_p *p);
+
+// utils.c
+bool	is_philo_digit(int c);
+void	custom_exit(char *str);
+void	*secure_malloc(size_t size);
+void	ft_mutex(int code, pthread_mutex_t *mutex);
+void	init_mutex(t_p *p);
+
+// utils_2.c
+void	ft_putcharight_forkd(char c, int fd);
+void	ft_putstright_forkd(char *s, int fd);
+void	ft_putnbright_forkd(long int ln, int fd);
+void	alone_philo(t_p *p);
 
 #endif

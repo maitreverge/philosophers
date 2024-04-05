@@ -6,11 +6,50 @@
 /*   By: flverge <flverge@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 16:52:29 by flverge           #+#    #+#             */
-/*   Updated: 2024/04/05 11:23:12 by flverge          ###   ########.fr       */
+/*   Updated: 2024/04/05 11:43:31 by flverge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
+
+static void	sleep_think(t_philo *ph)
+{
+	pthread_mutex_lock(&ph->pa->write_mutex);
+	write_status("is sleeping\n", ph);
+	pthread_mutex_unlock(&ph->pa->write_mutex);
+	ft_usleep(ph->pa->time2sleep);
+	pthread_mutex_lock(&ph->pa->write_mutex);
+	write_status("is thinking\n", ph);
+	pthread_mutex_unlock(&ph->pa->write_mutex);
+}
+
+static void	lock_forks(t_philo *ph)
+{
+	if (ph->id % 2 == 0)
+	{
+		pthread_mutex_lock(&ph->left_fork);
+		pthread_mutex_lock(ph->right_fork);
+	}
+	else
+	{
+		pthread_mutex_lock(ph->right_fork);
+		pthread_mutex_lock(&ph->left_fork);
+	}
+}
+
+static void	unlock_forks(t_philo *ph)
+{
+	if (ph->id % 2 == 0)
+	{
+		pthread_mutex_unlock(ph->right_fork);
+		pthread_mutex_unlock(&ph->left_fork);
+	}
+	else
+	{
+		pthread_mutex_unlock(&ph->left_fork);
+		pthread_mutex_unlock(ph->right_fork);
+	}
+}
 
 void	write_status(char *str, t_philo *ph)
 {
@@ -22,45 +61,6 @@ void	write_status(char *str, t_philo *ph)
 	{
 		printf("%ld ", time);
 		printf("Philo %d %s", ph->id, str);
-	}
-}
-
-void	sleep_think(t_philo *ph)
-{
-	pthread_mutex_lock(&ph->pa->write_mutex);
-	write_status("is sleeping\n", ph);
-	pthread_mutex_unlock(&ph->pa->write_mutex);
-	ft_usleep(ph->pa->time2sleep);
-	pthread_mutex_lock(&ph->pa->write_mutex);
-	write_status("is thinking\n", ph);
-	pthread_mutex_unlock(&ph->pa->write_mutex);
-}
-
-void	lock_forks(t_philo *ph)
-{
-	if (ph->id % 2 == 0)
-	{
-		pthread_mutex_lock(&ph->left_fork);
-		pthread_mutex_lock(ph->right_fork);
-	}
-	else
-	{
-		pthread_mutex_lock(ph->right_fork);
-		pthread_mutex_lock(&ph->left_fork);
-	}
-}
-
-void	unlock_forks(t_philo *ph)
-{
-	if (ph->id % 2 == 0)
-	{
-		pthread_mutex_unlock(ph->right_fork);
-		pthread_mutex_unlock(&ph->left_fork);
-	}
-	else
-	{
-		pthread_mutex_unlock(&ph->left_fork);
-		pthread_mutex_unlock(ph->right_fork);
 	}
 }
 
