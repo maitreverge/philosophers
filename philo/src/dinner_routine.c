@@ -6,7 +6,7 @@
 /*   By: flverge <flverge@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 16:52:29 by flverge           #+#    #+#             */
-/*   Updated: 2024/04/05 10:37:28 by flverge          ###   ########.fr       */
+/*   Updated: 2024/04/05 10:42:16 by flverge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	sleep_think(t_philo *ph)
 	pthread_mutex_unlock(&ph->pa->write_mutex);
 }
 
-void	activity(t_philo *ph)
+void lock_forks(t_philo *ph)
 {
 	if (ph->id % 2 == 0)
 	{
@@ -48,6 +48,36 @@ void	activity(t_philo *ph)
 		pthread_mutex_lock(ph->right_fork);
 		pthread_mutex_lock(&ph->left_fork);
 	}
+}
+
+
+void unlock_forks(t_philo *ph)
+{
+	if (ph->id % 2 == 0)
+	{
+		pthread_mutex_unlock(ph->right_fork);
+		pthread_mutex_unlock(&ph->left_fork);
+	}
+	else
+	{
+		pthread_mutex_unlock(&ph->left_fork);
+		pthread_mutex_unlock(ph->right_fork);
+	}
+}
+
+void	activity(t_philo *ph)
+{
+	// if (ph->id % 2 == 0)
+	// {
+	// 	pthread_mutex_lock(&ph->left_fork);
+	// 	pthread_mutex_lock(ph->right_fork);
+	// }
+	// else
+	// {
+	// 	pthread_mutex_lock(ph->right_fork);
+	// 	pthread_mutex_lock(&ph->left_fork);
+	// }
+	lock_forks(ph);
 
 	pthread_mutex_lock(&ph->pa->write_mutex);
 	write_status("has taken a fork\n", ph);
@@ -68,16 +98,19 @@ void	activity(t_philo *ph)
 	pthread_mutex_unlock(&ph->pa->write_mutex);
 	ft_usleep(ph->pa->time2eat);
 
-	if (ph->id % 2 == 0)
-	{
-		pthread_mutex_unlock(ph->right_fork);
-		pthread_mutex_unlock(&ph->left_fork);
-	}
-	else
-	{
-		pthread_mutex_unlock(&ph->left_fork);
-		pthread_mutex_unlock(ph->right_fork);
-	}
+
+
+	unlock_forks(ph);
+	// if (ph->id % 2 == 0)
+	// {
+	// 	pthread_mutex_unlock(ph->right_fork);
+	// 	pthread_mutex_unlock(&ph->left_fork);
+	// }
+	// else
+	// {
+	// 	pthread_mutex_unlock(&ph->left_fork);
+	// 	pthread_mutex_unlock(ph->right_fork);
+	// }
 
 	sleep_think(ph);
 }
