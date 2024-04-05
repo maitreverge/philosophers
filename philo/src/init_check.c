@@ -6,19 +6,19 @@
 /*   By: flverge <flverge@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 17:52:47 by flverge           #+#    #+#             */
-/*   Updated: 2024/04/03 16:01:13 by flverge          ###   ########.fr       */
+/*   Updated: 2024/04/05 11:20:08 by flverge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-bool nb_args_ok(int ac)
+bool	nb_args_ok(int ac)
 {
 	if (ac < 5)
 	{
 		printf(RED);
 		printf("⛔ Error : Missing at least %i arguments ⛔\n\n", 5 - ac);
-		printf(RESET); 
+		printf(RESET);
 		print_usage();
 		return (false);
 	}
@@ -51,13 +51,13 @@ void	print_usage(void)
 	printf("[ ⚠️  Next Argument Optional ⚠️  ]");
 	printf(YELLOW);
 	printf("  <nb_of_meals>\n\n");
-	printf(RESET); 
+	printf(RESET);
 }
 
-bool arg_checker(int ac, char **av)
+bool	arg_checker(int ac, char **av)
 {
 	int	i;
-	int j;
+	int	j;
 
 	i = 1;
 	j = 0;
@@ -70,7 +70,7 @@ bool arg_checker(int ac, char **av)
 			{
 				if (!is_philo_digit(av[i][j]))
 				{
-					error_digit();	
+					error_digit();
 					return (false);
 				}
 				j++;

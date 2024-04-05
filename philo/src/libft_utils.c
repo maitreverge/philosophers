@@ -6,7 +6,7 @@
 /*   By: flverge <flverge@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 12:58:37 by flverge           #+#    #+#             */
-/*   Updated: 2024/04/03 15:58:41 by flverge          ###   ########.fr       */
+/*   Updated: 2024/04/05 11:18:35 by flverge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 bool	ft_isspace(int c)
 {
 	if ((c >= 9 && c <= 13) || c == 32)
-		return true;
-	return false;
+		return (true);
+	return (false);
 }
 
 size_t	ft_atoi(const char *str)
 {
-	int	i;
 	size_t	result;
+	int		i;
 
 	i = 0;
 	result = 0;
@@ -39,6 +39,6 @@ size_t	ft_atoi(const char *str)
 bool	ft_isdigit(int c)
 {
 	if (c >= '0' && c <= '9')
-		return true;
-	return false;
+		return (true);
+	return (false);
 }

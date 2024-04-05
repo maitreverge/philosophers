@@ -6,7 +6,7 @@
 /*   By: flverge <flverge@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 17:26:35 by flverge           #+#    #+#             */
-/*   Updated: 2024/04/05 10:26:04 by flverge          ###   ########.fr       */
+/*   Updated: 2024/04/05 11:12:16 by flverge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,7 @@ void	*ft_dinner(void *data)
 			ph->is_full = 1;
 			ph->pa->nb_p_finish++;
 			if (ph->pa->nb_p_finish == ph->pa->nb_philos)
-			{
-				// pthread_mutex_unlock(&ph->pa->is_full);
 				is_philo_dead(ph, 2);
-			}
 			pthread_mutex_unlock(&ph->pa->is_full);
 			return (NULL);
 		}

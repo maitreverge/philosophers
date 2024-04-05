@@ -6,7 +6,7 @@
 /*   By: flverge <flverge@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 17:29:34 by flverge           #+#    #+#             */
-/*   Updated: 2024/04/04 18:51:54 by flverge          ###   ########.fr       */
+/*   Updated: 2024/04/05 11:17:44 by flverge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	custom_exit(char *str)
 void	*secure_malloc(size_t size)
 {
 	void	*result;
-	
+
 	result = malloc(size);
 	if (!result)
 		custom_exit("Malloc failed allocating memory");

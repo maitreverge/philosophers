@@ -1,12 +1,12 @@
- /* ************************************************************************** */
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: flverge <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: flverge <flverge@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 21:18:18 by flverge           #+#    #+#             */
-/*   Updated: 2024/02/21 13:12:27 by flverge          ###   ########.fr       */
+/*   Updated: 2024/04/05 11:14:37 by flverge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@
 // pthread_create, pthread_detach, pthread_join, pthread_mutex_init
 // pthread_mutex_destroy, pthread_mutex_lock, pthread_mutex_unlock
 
-#define RED     "\033[0;31m"
-#define GREEN   "\033[0;32m"
-#define YELLOW  "\033[0;33m"
-#define BLUE    "\033[0;34m"
-#define MAGENTA "\033[0;35m"
-#define CYAN    "\033[0;36m"
-#define RESET   "\033[0m"
+# define RED     "\033[0;31m"
+# define GREEN   "\033[0;32m"
+# define YELLOW  "\033[0;33m"
+# define BLUE    "\033[0;34m"
+# define MAGENTA "\033[0;35m"
+# define CYAN    "\033[0;36m"
+# define RESET   "\033[0m"
 
 typedef enum e_mutex_code
 {
@@ -39,7 +39,7 @@ typedef enum e_mutex_code
 	LOCK,
 	UNLOCK,
 	DESTROY
-} t_mutex_code;
+}		t_mutex_code;
 
 typedef struct s_arg
 {
@@ -76,20 +76,13 @@ typedef struct s_p
 	t_arg					a;
 }							t_p;
 
-/*
-** functions
-*/
-
-// int				parse_args(int argc, char **argv, t_p *p);
+// ! functions
 int				initialize(t_p *p);
 void				custom_exit(char *str);
 void			write_status(char *str, t_philo *ph);
-// long int		get_time(void);
 void			ft_putstright_forkd(char *s, int fd);
-// void			ft_usleep(long int time_in_ms);
 
 
-// int				turbo_dinner(t_p *p);
 int	turbo_dinner(t_p *p);
 
 void			activity(t_philo *ph);
@@ -112,9 +105,5 @@ bool	is_philo_digit(int c);
 bool	ft_isspace(int c);
 size_t	ft_atoi(const char *str);
 bool	ft_isdigit(int c);
-
-
-
-
 
 #endif
