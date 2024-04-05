@@ -6,7 +6,7 @@
 /*   By: flverge <flverge@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 17:26:35 by flverge           #+#    #+#             */
-/*   Updated: 2024/04/05 12:03:24 by flverge          ###   ########.fr       */
+/*   Updated: 2024/04/05 12:37:09 by flverge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,13 @@ static void	*is_dead(void	*data)
 		ft_mutex(UNLOCK, &ph->pa->write_mutex);
 		is_philo_dead(ph, 1);
 	}
-	// pthread_mutex_unlock(&ph->pa->time_eat);
-	ft_mutex(UNLOCK, &ph->pa->time_eat);
-	// pthread_mutex_unlock(&ph->pa->is_full);
-	ft_mutex(UNLOCK, &ph->pa->is_full);
+	else
+	{
+		pthread_mutex_unlock(&ph->pa->time_eat);
+		// ft_mutex(UNLOCK, &ph->pa->time_eat);
+		pthread_mutex_unlock(&ph->pa->is_full);
+		// ft_mutex(UNLOCK, &ph->pa->is_full);
+	}
 	return (NULL);
 }
 
